@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-21 18:02",
-  "updated_by": "Nikola",
+  "updated": "2026-09-21T18:05:00-04:00",
+  "updated_by": "Atlas \u2014 locked roles + stuck facts",
   "members": [
     {
       "id": "tj",
@@ -10,8 +10,8 @@
       "role": "Decision maker",
       "tagline": "Calls the shots on shoot, spend, and go-live",
       "status": "working",
-      "now": "Hassan shoot details when he replies; Chrome logins tomorrow (have them)",
-      "next": "Tomorrow: logins in Chrome, website cleanup, Meta setup when ready",
+      "now": "Hassan shoot details when he replies; Chrome logins tomorrow (already have them)",
+      "next": "Tomorrow: logins in Chrome, site cleanup; Meta setup when ready \u2014 not stuck",
       "when": "Tonight \u2192 Tuesday shoot",
       "icon": "icons/tj.svg",
       "links": [
@@ -31,7 +31,7 @@
       "persona": "Hassan",
       "kind": "human",
       "role": "Partner + on camera",
-      "tagline": "Talent, logins, and the face of the shoot",
+      "tagline": "Partner on camera \u2014 and the face of the shoot",
       "status": "waiting",
       "now": "Tuesday on camera \u2014 shoot time/place when he replies",
       "next": "Tuesday Sep 22 shoot \u00b7 later introduce partners and deal-desk hour",
@@ -53,7 +53,7 @@
       "tagline": "Keeps the crew aligned and the board honest",
       "status": "working",
       "now": "Keeping this board current \u00b7 routing T.J. \u00b7 publishing the page",
-      "next": "Keep board = local \u00b7 chase shoot details \u00b7 Ali scrub \u00b7 Privacy mailing address",
+      "next": "Keep live board matching local redesign files",
       "when": "Ongoing",
       "icon": "icons/nikola.svg",
       "links": [
@@ -98,10 +98,10 @@
       "persona": "Pax",
       "kind": "agent",
       "role": "Paid Ads",
-      "tagline": "Owns Meta ads and the cash-return spend gate",
+      "tagline": "Owns Meta ads, ~$200/day US spend, and the all-cash return check",
       "status": "waiting",
-      "now": "Ad campaign drafted (paused); needs Meta access + creatives ready",
-      "next": "Ads on Wed/Thu only if blockers, shoot, and edits are clear (~$200/day US)",
+      "now": "Ad campaign drafted (paused); creatives after shoot \u2014 Meta setup tomorrow (not stuck)",
+      "next": "Ads on Wed/Thu only if site is clean and shoot/edits are done (~$200/day US)",
       "when": "Wed\u2013Thu Sep 23\u201324 (only if clear)",
       "icon": "icons/pax.svg",
       "links": [
@@ -117,7 +117,7 @@
       "persona": "Remy",
       "kind": "agent",
       "role": "Buyer Emails",
-      "tagline": "Owns post-booking email, welcome, and checkout reminders",
+      "tagline": "Owns post-booking email, welcome series, and checkout reminders",
       "status": "waiting",
       "now": "Email-3 outline waiting on T.J. for subject + beat OK",
       "next": "Write email 3, then 1\u20132, then connect in GoHighLevel before ads",
@@ -136,7 +136,7 @@
       "persona": "Quinn",
       "kind": "agent",
       "role": "Website & Checkout",
-      "tagline": "Owns clearing the old Ali funnel and live checkout",
+      "tagline": "Owns removing the old Ali funnel, Whop checkout, and phone checkout test",
       "status": "waiting",
       "now": "Ali still on the live site; checkout path not live yet",
       "next": "Checkout live (course + bump + VIP trial) \u00b7 mobile checkout test",
@@ -159,9 +159,9 @@
       "persona": "Atlas",
       "kind": "agent",
       "role": "Design",
-      "tagline": "Owns the look of the relaunch board and creatives polish",
+      "tagline": "Owns relaunch board look, team personas/icons, and creative polish",
       "status": "working",
-      "now": "Persona icons + plain-English board for Hassan",
+      "now": "Hardened icons + locked role tags + stuck facts on redesign files",
       "next": "Stand by for small visual fixes after publish",
       "when": "Sep 21",
       "icon": "icons/atlas.svg",
@@ -178,10 +178,10 @@
       "persona": "Orion",
       "kind": "agent",
       "role": "Own It Offer Truth",
-      "tagline": "Owns offer accuracy, pricing claims, and what can be said on camera or in ads",
+      "tagline": "Owns product/offer accuracy, pricing claims, and what can be said live",
       "status": "waiting",
-      "now": "Standing by for $997 inclusions + on-camera claim checks once Hassan/T.J. lock them",
-      "next": "Truth-check launch claims before ads",
+      "now": "On call when product/offer copy needs a truth check",
+      "next": "Review launch claims before ads if asked",
       "when": "As needed",
       "icon": "icons/orion.svg",
       "links": [
@@ -191,14 +191,5 @@
         }
       ]
     }
-  ],
-  "locked_done": [
-    "Legal entity: Own It U LLC",
-    "Privacy email: contact@ownitu.com",
-    "ROAS gate: all cash collected"
-  ],
-  "not_stuck": [
-    "Meta setup tomorrow",
-    "Chrome logins tomorrow (already have them)"
   ]
 }

@@ -1,23 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
-  <defs>
-    <linearGradient id="g" x1="12" y1="8" x2="52" y2="56" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#1A2230"/>
-      <stop offset="1" stop-color="#0E141C"/>
-    </linearGradient>
-    <linearGradient id="gold" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#F0D078"/>
-      <stop offset="1" stop-color="#C9A227"/>
-    </linearGradient>
-    <linearGradient id="cyan" x1="18" y1="16" x2="46" y2="48" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7EEAE0"/>
-      <stop offset="1" stop-color="#2BB8B0"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="16" fill="url(#g)"/>
-  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#2A3548" stroke-width="1"/>
-  
-  <rect x="14" y="22" width="28" height="20" rx="3" stroke="url(#cyan)" stroke-width="2.2"/>
-  <circle cx="28" cy="32" r="5.5" stroke="url(#gold)" stroke-width="2"/>
-  <rect x="42" y="26" width="8" height="12" rx="2" fill="url(#gold)"/>
-  <path d="M18 18h6l2 4h-8l0-4zM32 18h6l2 4h-8l0-4z" fill="url(#gold)"/>
+  <rect width="64" height="64" rx="16" fill="#121820"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" stroke="#7EEAE0" stroke-width="2.5"/>
+  <path d="M14 28l36-10v8l-36 10z" fill="#F0D078"/>
+  <rect x="14" y="28" width="36" height="20" rx="2" stroke="#7EEAE0" stroke-width="2.5"/>
+  <path d="M18 32h6M28 32h6M38 32h6" stroke="#121820" stroke-width="3"/>
 </svg>
