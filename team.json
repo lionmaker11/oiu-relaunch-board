@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21 17:58",
+  "updated": "2026-09-21 18:02",
   "updated_by": "Nikola",
   "members": [
     {
@@ -53,7 +53,7 @@
       "tagline": "Keeps the crew aligned and the board honest",
       "status": "working",
       "now": "Keeping this board current \u00b7 routing T.J. \u00b7 publishing the page",
-      "next": "Republish when personas + icons land",
+      "next": "Keep board = local \u00b7 chase shoot details \u00b7 Ali scrub \u00b7 Privacy mailing address",
       "when": "Ongoing",
       "icon": "icons/nikola.svg",
       "links": [
@@ -72,7 +72,7 @@
       "name": "Mira",
       "persona": "Mira",
       "kind": "agent",
-      "role": "Shoot & video",
+      "role": "Shoot & Video",
       "tagline": "Owns Hassan shoot day, sales video, and short hooks",
       "status": "waiting",
       "now": "Shot list + hook/Q&A pack ready; waiting on shoot logistics",
@@ -97,7 +97,7 @@
       "name": "Pax",
       "persona": "Pax",
       "kind": "agent",
-      "role": "Paid ads",
+      "role": "Paid Ads",
       "tagline": "Owns Meta ads and the cash-return spend gate",
       "status": "waiting",
       "now": "Ad campaign drafted (paused); needs Meta access + creatives ready",
@@ -116,7 +116,7 @@
       "name": "Remy",
       "persona": "Remy",
       "kind": "agent",
-      "role": "Buyer emails",
+      "role": "Buyer Emails",
       "tagline": "Owns post-booking email, welcome, and checkout reminders",
       "status": "waiting",
       "now": "Email-3 outline waiting on T.J. for subject + beat OK",
@@ -135,7 +135,7 @@
       "name": "Quinn",
       "persona": "Quinn",
       "kind": "agent",
-      "role": "Website & checkout",
+      "role": "Website & Checkout",
       "tagline": "Owns clearing the old Ali funnel and live checkout",
       "status": "waiting",
       "now": "Ali still on the live site; checkout path not live yet",
@@ -177,11 +177,11 @@
       "name": "Orion",
       "persona": "Orion",
       "kind": "agent",
-      "role": "Own It specialist",
-      "tagline": "Product and offer truth checks before claims go live",
+      "role": "Own It Offer Truth",
+      "tagline": "Owns offer accuracy, pricing claims, and what can be said on camera or in ads",
       "status": "waiting",
-      "now": "On call when product/offer copy needs a truth check",
-      "next": "Review launch claims before ads if asked",
+      "now": "Standing by for $997 inclusions + on-camera claim checks once Hassan/T.J. lock them",
+      "next": "Truth-check launch claims before ads",
       "when": "As needed",
       "icon": "icons/orion.svg",
       "links": [
@@ -191,5 +191,14 @@
         }
       ]
     }
+  ],
+  "locked_done": [
+    "Legal entity: Own It U LLC",
+    "Privacy email: contact@ownitu.com",
+    "ROAS gate: all cash collected"
+  ],
+  "not_stuck": [
+    "Meta setup tomorrow",
+    "Chrome logins tomorrow (already have them)"
   ]
 }
