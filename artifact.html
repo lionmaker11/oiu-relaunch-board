@@ -286,14 +286,14 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
 <div class="banner">
   <strong>Own It relaunch board · team personas</strong>
-  <span>Who’s doing what, what’s next, what’s stuck. Built for sharing with Hassan.</span>
+  <span>Who's on what, what's next, what's waiting.</span>
   <code>index.html</code>
 </div>
 
 <header class="top">
   <div>
     <h1>Own It · <span>Relaunch Path</span></h1>
-    <p class="sub">Where we are on the relaunch, what’s next, and who’s stuck. Done / Working / Held up / Not started.</p>
+    <p class="sub">Where we are on the relaunch, what's next, and what's waiting.</p>
   </div>
   <div class="totals">
     <span class="chip done">✓ 4 done</span>
@@ -551,17 +551,9 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
 </div>
 
-<footer class="notes">
-  <h2>Board copy · plain English for Hassan</h2>
-  <p>
-    The path stays the main view. Team panel reads <code>team.json</code> (seed inlined below for static Pages;
-    live fetch when served beside the HTML). CoS updates <code>team.json</code> from pulse — no redesign.
-    Publish: copy <code>index.html</code> → <code>index.html</code> and <code>team.json</code>
-    next to it on <code>lionmaker11.github.io/oiu-relaunch-board</code>. Later <code>build.py</code> can
-    inject roster at build time the same way. Local-only artifacts use “ask T.J.” notes — no file:// for Hassan.
-  </p>
-  
-  <script>
+<footer class="notes" hidden>
+  <!-- internal publish notes removed from public board -->
+<script>
   (function(){
     function render(data){
       var root = document.getElementById('roster');
