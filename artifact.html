@@ -104,6 +104,7 @@ h1 span{color:var(--gold)}
 }
 .panel li:first-of-type{border-top:0;padding-top:0}
 .tag{font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.tag.done{background:rgba(74,200,140,.15);color:#6dcea0;border:1px solid rgba(74,200,140,.35)}
 .tag.next{background:rgba(230,184,74,.15);color:var(--gold);border:1px solid rgba(230,184,74,.35)}
 .tag.held{background:rgba(255,92,92,.15);color:var(--crit);border:1px solid rgba(255,92,92,.4);animation:heldGlow 2s ease-in-out infinite}
 .who{font-size:12px;color:var(--dim);white-space:nowrap}
@@ -321,7 +322,6 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
     <h2>Next — unlocks the path</h2>
     <ol>
       <li><span class="tag next">NEXT</span><span>T.J.: confirm Hassan shoot time, place, and kit</span><span class="who">→ Tue shoot</span></li>
-      <li><span class="tag next">NEXT</span><span>Hassan → T.J.: exact legal business name + type for website/checkout</span><span class="who">→ ads week</span></li>
       <li><span class="tag next">NEXT</span><span>T.J. + Hassan: remove Ali from the live site and confirm it’s clean</span><span class="who">→ ads week</span></li>
     </ol>
   </section>
@@ -329,7 +329,6 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
     <h2>Up next</h2>
     <ol>
       <li><span class="tag held">T.J.</span><span>Confirm shoot details, privacy contact info, and Meta ads access</span><span class="who">3</span></li>
-      <li><span class="tag held">Hassan → T.J.</span><span>Send legal business name; T.J. must verify logins in Chrome</span><span class="who">2</span></li>
       <li><span class="tag held">T.J. + Hassan</span><span>Finish removing Ali from the live website</span><span class="who">1</span></li>
     </ol>
   </section>
@@ -343,7 +342,7 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
   </div>
   <div class="roster" id="roster">
 <article class="member blocked human" data-id="tj"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/tj.svg" alt="" width="40" height="40"/><div><h3 class="m-name">T.J.</h3><span class="m-role">Decision maker</span><span class="m-tagline">Calls the shots on shoot, spend, and go-live</span></div></div><span class="status working">working</span></div><div class="m-lines"><div><span class="k">Now</span>Hassan shoot details when he replies · Chrome logins tomorrow (already have them) · keep relaunch moving</div><div><span class="k">Next</span>Tomorrow: open logins in Chrome · website cleanup · Meta setup when ready</div><div class="m-when"><span class="k">When</span>Tonight → Tuesday shoot</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a><a href="https://uownit.com" target="_blank" rel="noopener">uownit.com (still shows Ali — needs cleanup)</a></div></article>
-<article class="member waiting human" data-id="hassan"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/hassan.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Hassan</h3><span class="m-role">Partner + on camera</span><span class="m-tagline">Talent, logins, and the face of the shoot</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Business name/type + account logins; Tuesday on camera</div><div><span class="k">Next</span>Tuesday Sep 22 shoot · later introduce partners and deal-desk hour</div><div class="m-when"><span class="k">When</span>Tue Sep 22 shoot</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a></div></article>
+<article class="member waiting human" data-id="hassan"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/hassan.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Hassan</h3><span class="m-role">Partner + on camera</span><span class="m-tagline">Talent, logins, and the face of the shoot</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Tuesday on camera — shoot time/place when he replies</div><div><span class="k">Next</span>Tuesday Sep 22 shoot · later introduce partners and deal-desk hour</div><div class="m-when"><span class="k">When</span>Tue Sep 22 shoot</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a></div></article>
 <article class="member working agent" data-id="nikola"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/nikola.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Nikola</h3><span class="m-role">Chief of Staff</span><span class="m-tagline">Keeps the crew aligned and the board honest</span></div></div><span class="status working">working</span></div><div class="m-lines"><div><span class="k">Now</span>Keeping this board current · routing T.J. · publishing the page</div><div><span class="k">Next</span>Republish when personas + icons land</div><div class="m-when"><span class="k">When</span>Ongoing</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a><a href="https://github.com/lionmaker11/oiu-relaunch-board" target="_blank" rel="noopener">Board source on GitHub</a></div></article>
 <article class="member waiting agent" data-id="mira"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/mira.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Mira</h3><span class="m-role">Shoot &amp; video</span><span class="m-tagline">Owns Hassan shoot day, sales video, and short hooks</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Shot list + hook/Q&amp;A pack ready; waiting on shoot logistics</div><div><span class="k">Next</span>Tuesday shoot → Wednesday edit sales video + ad clips</div><div class="m-when"><span class="k">When</span>Tue Sep 22 → Wed Sep 23</div></div><div class="m-links"><span class="note">Shot checklist · private file — ask T.J.</span><span class="note">Hook / Q&amp;A pack · private file — ask T.J.</span></div></article>
 <article class="member waiting agent" data-id="pax"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/pax.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Pax</h3><span class="m-role">Paid ads</span><span class="m-tagline">Owns Meta ads and the cash-return spend gate</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Ad campaign drafted (paused). Not ready yet — website, creatives, then Meta setup tomorrow</div><div><span class="k">Next</span>Ads on Wed/Thu only if blockers, shoot, and edits are clear (~$200/day US)</div><div class="m-when"><span class="k">When</span>Wed–Thu Sep 23–24 (only if clear)</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board — paid ads</a></div></article>
@@ -395,7 +394,6 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
       <div class="lane">
         <h3>Platform / Legal · 0/4</h3>
         <ul>
-          <li class="held"><span class="g">!</span><span class="t">Entity name + type <span class="who-em">Hassan → T.J.</span></span></li>
           <li class="held"><span class="g">!</span><span class="t">Privacy email + mailing address <span class="who-em">T.J.</span></span></li>
           <li class="held"><span class="g">!</span><span class="t">Ali scrub verified on live <span class="who-em">T.J. + Hassan</span></span></li>
           <li class="held"><span class="g">!</span><span class="t">Hassan logins verified in Chrome <span class="who-em">T.J.</span></span></li>
@@ -601,7 +599,7 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
       "role": "Decision maker",
       "tagline": "Calls the shots on shoot, spend, and go-live",
       "status": "blocked",
-      "now": "Shoot details, business name, logins, and Ali cleanup \u2014 the path is waiting on him",
+      "now": "Hassan shoot details when he replies · Chrome logins tomorrow (already have them) · Ali off the live site",
       "next": "Approve Tuesday\u2019s shoot and the website + ads steps",
       "when": "Tonight \u2192 Tuesday shoot",
       "icon": "icons/tj.svg",
@@ -624,7 +622,7 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
       "role": "Partner + on camera",
       "tagline": "Talent, logins, and the face of the shoot",
       "status": "waiting",
-      "now": "Business name/type + account logins; Tuesday on camera",
+      "now": "Tuesday on camera — shoot time/place when he replies",
       "next": "Tuesday Sep 22 shoot \u00b7 later introduce partners and deal-desk hour",
       "when": "Tue Sep 22 shoot",
       "icon": "icons/hassan.svg",
