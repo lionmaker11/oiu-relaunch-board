@@ -1,6 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3ECF8E"/><stop offset="100%" stop-color="#0B0E12"/></linearGradient></defs>
-  <rect width="80" height="80" rx="20" fill="#12171F"/>
-  <circle cx="40" cy="40" r="28" fill="url(#g)" opacity="0.95"/>
-  <text x="40" y="48" text-anchor="middle" font-family="IBM Plex Sans, system-ui, sans-serif" font-size="28" font-weight="700" fill="#0B0E12">Q</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="g" x1="12" y1="8" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A2230"/>
+      <stop offset="1" stop-color="#0E141C"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="16" y1="14" x2="48" y2="50" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F0D078"/>
+      <stop offset="1" stop-color="#C9A227"/>
+    </linearGradient>
+    <linearGradient id="cyan" x1="18" y1="16" x2="46" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7EEAE0"/>
+      <stop offset="1" stop-color="#2BB8B0"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="url(#g)"/>
+  <rect x="1" y="1" width="62" height="62" rx="15" stroke="#2A3548" stroke-width="1"/>
+  
+  <rect x="13" y="16" width="38" height="28" rx="3" stroke="url(#cyan)" stroke-width="2.2"/>
+  <path d="M13 24h38" stroke="url(#gold)" stroke-width="2"/>
+  <circle cx="18" cy="20" r="1.4" fill="#F0D078"/>
+  <circle cx="23" cy="20" r="1.4" fill="#7EEAE0"/>
+  <path d="M22 50h16l3-10H20l2 10z" stroke="url(#gold)" stroke-width="1.8" stroke-linejoin="round"/>
+  <circle cx="26" cy="52" r="2" fill="#C9A227"/>
+  <circle cx="36" cy="52" r="2" fill="#C9A227"/>
 </svg>
