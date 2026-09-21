@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-21T18:05:00-04:00",
-  "updated_by": "Atlas \u2014 locked roles + stuck facts",
+  "updated": "2026-09-21T18:35:00-04:00",
+  "updated_by": "Atlas \u2014 partner-board copy scrub",
   "members": [
     {
       "id": "tj",
@@ -161,7 +161,7 @@
       "role": "Design",
       "tagline": "Owns relaunch board look, team personas/icons, and creative polish",
       "status": "working",
-      "now": "Hardened icons + locked role tags + stuck facts on redesign files",
+      "now": "Icons and role tags locked; standing by for small visual fixes after publish",
       "next": "Stand by for small visual fixes after publish",
       "when": "Sep 21",
       "icon": "icons/atlas.svg",

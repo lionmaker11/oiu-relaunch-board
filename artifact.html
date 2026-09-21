@@ -286,14 +286,14 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
 <div class="banner">
   <strong>Own It relaunch board · team personas</strong>
-  <span>Who's on what, what's next, what's waiting.</span>
+  <span>Who’s doing what, what’s next, what’s stuck.</span>
   <code>index.html</code>
 </div>
 
 <header class="top">
   <div>
     <h1>Own It · <span>Relaunch Path</span></h1>
-    <p class="sub">Where we are on the relaunch, what's next, and what's waiting.</p>
+    <p class="sub">Where we are on the relaunch, what’s next, and who’s stuck. Done / Working / Held up / Not started.</p>
   </div>
   <div class="totals">
     <span class="chip done">✓ 4 done</span>
@@ -320,7 +320,8 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
   <section class="panel next-panel">
     <h2>Next — unlocks the path</h2>
     <ol>
-      <li><span class="tag next">NEXT</span><span>T.J.: confirm Hassan shoot time, place, and kit</span><span class="who">→ Tue shoot</span></li>
+      <li><span class="tag next">NEXT</span><span>T.J.: confirm shoot time, place, and kit</span><span class="who">→ Tue shoot</span></li>
+      <li><span class="tag next">NEXT</span><span>T.J.: mailing address for the Privacy page</span><span class="who">→ ads week</span></li>
       <li><span class="tag next">NEXT</span><span>T.J. + Hassan: remove Ali from the live site and confirm it’s clean</span><span class="who">→ ads week</span></li>
     </ol>
   </section>
@@ -329,9 +330,6 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
     <ol>
       <li><span class="tag held">T.J.</span><span>Confirm shoot details (time, place, kit)</span><span class="who">1</span></li>
       <li><span class="tag held">T.J.</span><span>Mailing address for the Privacy page</span><span class="who">1</span></li>
-      <li><span class="tag done">Done</span><span>Legal entity Own It U LLC — set on Whop / Terms / Privacy</span><span class="who">✓</span></li>
-      <li><span class="tag done">DONE</span><span>Privacy email: contact@ownitu.com</span><span class="who">✓</span></li>
-      <li><span class="tag done">DONE</span><span>ROAS gate: all cash collected (incl Operator/Desk)</span><span class="who">✓</span></li>
       <li><span class="tag held">T.J. + Hassan</span><span>Ali off the live site</span><span class="who">1</span></li>
     </ol>
   </section>
@@ -396,7 +394,6 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
       <div class="lane">
         <h3>Platform / Legal · 0/4</h3>
         <ul>
-          <li class="done"><span class="g">✓</span><span class="t">Legal entity Own It U LLC — done</span></li>
           <li class="held"><span class="g">!</span><span class="t">Mailing address for Privacy page <span class="who-em">T.J.</span></span></li>
           <li class="held"><span class="g">!</span><span class="t">Ali off the live site <span class="who-em">T.J. + Hassan</span></span></li>
           <li class="todo"><span class="g">○</span><span class="t">Account walkthrough — scheduled tomorrow (not blocked)</span></li>
@@ -551,11 +548,47 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
 </div>
 
-<footer class="notes" hidden></footer>
+<footer class="notes">
+  <h2>Publish notes</h2>
+  <p>
+    The path stays the main view. Team panel reads <code>team.json</code> (seed inlined below for static Pages;
+    live fetch when served beside the HTML). CoS updates <code>team.json</code> from pulse — no redesign.
+    Publish: <code>index.html</code> + <code>team.json</code> + <code>icons/</code> to
+    <code>lionmaker11.github.io/oiu-relaunch-board</code>. Local-only artifacts use “ask T.J.” notes (no private file paths on the public board).
+  </p>
+  
+  <script>
+  (function(){
+    function render(data){
+      var root = document.getElementById('roster');
+      if(!root || !data || !data.members) return;
+      var esc = function(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
+      root.innerHTML = data.members.map(function(m){
+        var links = (m.links||[]).map(function(L){
+          if(L.url) return '<a href="'+esc(L.url)+'" target="_blank" rel="noopener">'+esc(L.label)+'</a>';
+          return '<span class="note">'+esc(L.label)+' · '+esc(L.note||'ask T.J. for file')+'</span>';
+        }).join('') || '<span class="note">No public links yet</span>';
+        return '<article class="member '+esc(m.status)+' '+esc(m.kind||'')+'" data-id="'+esc(m.id)+'">'+
+          '<div class="m-top"><div><h3 class="m-name">'+esc(m.name)+'</h3><span class="m-role">'+esc(m.role)+'</span></div>'+
+          '<span class="status '+esc(m.status)+'">'+esc(m.status)+'</span></div>'+
+          '<div class="m-lines"><div><span class="k">Now</span>'+esc(m.now)+'</div>'+
+          '<div><span class="k">Next</span>'+esc(m.next)+'</div>'+
+          '<div class="m-when"><span class="k">When</span>'+esc(m.when)+'</div></div>'+
+          '<div class="m-links">'+links+'</div></article>';
+      }).join('');
+      var meta = document.querySelector('.team-head .meta');
+      if(meta && data.updated) meta.textContent = 'From team.json · updated '+data.updated+' · Chief of Staff updates from check-ins';
+    }
+    var seed = document.getElementById('team-seed');
+    try{ render(JSON.parse(seed.textContent)); }catch(e){}
+    fetch('team.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){ if(d) render(d); }).catch(function(){});
+  })();
+  </script>
+</footer>
 <script type="application/json" id="team-seed">
 {
-  "updated": "2026-09-21T18:05:00-04:00",
-  "updated_by": "Atlas \u2014 locked roles + stuck facts",
+  "updated": "2026-09-21T18:35:00-04:00",
+  "updated_by": "Atlas \u2014 partner-board copy scrub",
   "members": [
     {
       "id": "tj",
@@ -716,7 +749,7 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
       "role": "Design",
       "tagline": "Owns relaunch board look, team personas/icons, and creative polish",
       "status": "working",
-      "now": "Hardened icons + locked role tags + stuck facts on redesign files",
+      "now": "Partner-board copy scrub: no audience-aside notes; icons + role tags locked",
       "next": "Stand by for small visual fixes after publish",
       "when": "Sep 21",
       "icon": "icons/atlas.svg",
