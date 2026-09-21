@@ -1,66 +1,486 @@
-<title>Own It Relaunch Board</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>OIU Relaunch — Launch Spine v2 (alive)</title>
 <style>
-:root{--bg:#F5F6F8;--surface:#FFFFFF;--ink:#171A1F;--ink2:#4F5865;--muted:#7A8391;--line:#D8DDE4;--accent:#8A6A1F;
---good:#1B7F3B;--good-bg:#E4F3E8;--warn:#9A5F06;--warn-bg:#FBEFD9;--crit:#B3261E;--crit-bg:#FBE4E1;--neutral:#5F6975;--neutral-bg:#ECEFF3}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#121417;--surface:#1B1F25;--ink:#E9ECF0;--ink2:#B6BEC8;--muted:#8B95A1;--line:#2E353E;--accent:#D8B45A;
---good:#5CCB80;--good-bg:#173323;--warn:#E5B04A;--warn-bg:#3A2C0F;--crit:#F2837A;--crit-bg:#3E1C19;--neutral:#A6AFBA;--neutral-bg:#252B33}}
-:root[data-theme="dark"]{--bg:#121417;--surface:#1B1F25;--ink:#E9ECF0;--ink2:#B6BEC8;--muted:#8B95A1;--line:#2E353E;--accent:#D8B45A;
---good:#5CCB80;--good-bg:#173323;--warn:#E5B04A;--warn-bg:#3A2C0F;--crit:#F2837A;--crit-bg:#3E1C19;--neutral:#A6AFBA;--neutral-bg:#252B33}
+:root{
+  --void:#0B0E12; --panel:#12171F; --panel2:#171D27;
+  --line:#2A3342; --lineHot:#3D4A5E;
+  --ink:#E8EDF5; --muted:#8B96A8; --dim:#5C677A;
+  --gold:#E6B84A; --goldGlow:rgba(230,184,74,.45);
+  --cyan:#3DD6C6; --cyanGlow:rgba(61,214,198,.35);
+  --good:#3ECF8E; --work:#F0A83A; --crit:#FF5C5C; --critGlow:rgba(255,92,92,.4);
+  --rail:68px;
+}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;padding-inline:20px;padding-block:20px 40px}
-h1{font-size:24px;margin:0;letter-spacing:-.01em;text-wrap:balance}h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);margin:28px 0 10px}
-.sub{margin:4px 0 0;color:var(--ink2);max-width:60ch}
-.top{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:flex-start;justify-content:space-between}
+html,body{margin:0;background:var(--void);color:var(--ink);
+  font:15px/1.45 "IBM Plex Sans",system-ui,-apple-system,sans-serif}
+body{
+  min-height:100vh;padding:22px 26px 72px;
+  background:
+    radial-gradient(1200px 600px at 15% -10%, rgba(230,184,74,.08), transparent 55%),
+    radial-gradient(900px 500px at 90% 20%, rgba(61,214,198,.06), transparent 50%),
+    var(--void);
+}
+.banner{
+  display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;
+  padding:9px 14px;border-radius:8px;margin-bottom:18px;
+  background:linear-gradient(90deg,rgba(230,184,74,.12),rgba(61,214,198,.08));
+  border:1px solid rgba(230,184,74,.28);
+  font-size:12px;color:var(--muted);
+}
+.banner strong{color:var(--gold);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:11px}
+.banner code{font-size:11px;color:var(--cyan);background:rgba(61,214,198,.08);padding:2px 7px;border-radius:4px}
+
+header.top{display:flex;flex-wrap:wrap;gap:16px 28px;justify-content:space-between;align-items:flex-start}
+h1{margin:0;font-size:26px;letter-spacing:-.02em;font-weight:650}
+h1 span{color:var(--gold)}
+.sub{margin:5px 0 0;color:var(--muted);max-width:54ch;font-size:14px}
 .totals{display:flex;flex-wrap:wrap;gap:8px}
-.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;font-size:13px;font-weight:600;border:1px solid var(--line);background:var(--surface);color:var(--ink2)}
-.chip.done{color:var(--good);background:var(--good-bg);border-color:transparent}.chip.active{color:var(--warn);background:var(--warn-bg);border-color:transparent}
-.chip.blocked{color:var(--crit);background:var(--crit-bg);border-color:transparent}.chip.todo{color:var(--neutral);background:var(--neutral-bg);border-color:transparent}
-.strip{list-style:none;padding:0;margin:20px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
-.strip li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}
-.strip .d{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:12px;color:var(--accent);font-weight:600}
-.strip .w{font-size:13px;color:var(--ink)}.strip .n{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.strip li.soon{border-color:var(--accent)}.strip li.past{opacity:.6}
-.held ol{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--crit);border-radius:6px}
-.held li{display:grid;grid-template-columns:auto auto 1fr auto;gap:6px 14px;align-items:baseline;padding:9px 12px;border-top:1px solid var(--line)}
-.held li:first-child{border-top:0}.held .who{font-weight:700;color:var(--crit)}.held .ws{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted)}
-.held .due{font-size:13px;color:var(--ink2);font-variant-numeric:tabular-nums;white-space:nowrap}.held .note{grid-column:3/-1;font-size:13px;color:var(--muted)}
-.empty{color:var(--muted);margin:0}
-.row{display:grid;grid-template-columns:180px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--line)}
-.lab{display:flex;flex-direction:column;gap:2px}.lab .p{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-weight:600;color:var(--accent)}
-.lab .nm{font-weight:600}.lab .up{font-size:12px;color:var(--muted)}
-.cells{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
-.cell{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--neutral);border-radius:6px;padding:8px 10px 10px;display:flex;flex-direction:column;gap:4px;min-height:96px}
-.cell .state{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;display:flex;gap:6px;align-items:center;color:var(--neutral)}
-.cell .name{font-size:13px;line-height:1.35;color:var(--ink)}.cell .when{font-size:12px;color:var(--muted);margin-top:auto;font-variant-numeric:tabular-nums}
-.cell .hold{font-size:12px;color:var(--crit);font-weight:600}.cell .note{font-size:12px;color:var(--ink2)}
-.cell.done{border-top-color:var(--good)}.cell.done .state{color:var(--good)}.cell.done .name{color:var(--ink2)}
-.cell.active{border-top-color:var(--warn)}.cell.active .state{color:var(--warn)}
-.cell.blocked,.cell.overdue{border-top-color:var(--crit);background:var(--crit-bg)}.cell.blocked .state,.cell.overdue .state{color:var(--crit)}
-.more{font-size:12px;color:var(--muted);grid-column:2;margin:0}
-footer{margin-top:28px;color:var(--muted);font-size:13px;max-width:80ch}footer code{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;font-size:12px}
-.legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
-@media (max-width:640px){.row{grid-template-columns:1fr}.more{grid-column:1}.held li{grid-template-columns:auto 1fr;grid-auto-rows:auto}.held .t{grid-column:1/-1}}
-@media (prefers-reduced-motion: reduce){*{transition:none}}
+.chip{
+  display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:999px;
+  font-size:12px;font-weight:650;border:1px solid var(--line);background:var(--panel);
+}
+.chip.done{color:var(--good);border-color:rgba(62,207,142,.35);background:rgba(62,207,142,.08)}
+.chip.work{color:var(--work);border-color:rgba(240,168,58,.4);background:rgba(240,168,58,.1)}
+.chip.held{color:var(--crit);border-color:rgba(255,92,92,.45);background:rgba(255,92,92,.1);animation:heldGlow 2.4s ease-in-out infinite}
+.chip.todo{color:var(--muted)}
+
+.path{
+  list-style:none;margin:20px 0 0;padding:18px 10px 14px;display:flex;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow-x:auto;
+}
+.path li{flex:1;min-width:86px;text-align:center;position:relative;padding:0 4px}
+.path li:not(:last-child)::after{
+  content:"";position:absolute;top:12px;left:calc(50% + 14px);right:calc(-50% + 14px);
+  height:3px;background:var(--line);border-radius:2px;z-index:0;
+}
+.path li.past:not(:last-child)::after{
+  background:linear-gradient(90deg,var(--good),var(--cyan));
+  box-shadow:0 0 8px rgba(62,207,142,.35);
+}
+.path li.now:not(:last-child)::after{
+  background:linear-gradient(90deg,var(--gold),var(--line));
+  animation:spineCharge 2.8s ease-in-out infinite;
+}
+.dot{
+  width:24px;height:24px;border-radius:50%;margin:0 auto 8px;position:relative;z-index:1;
+  border:2px solid var(--lineHot);background:var(--void);
+}
+.path li.past .dot{background:var(--good);border-color:var(--good);box-shadow:0 0 10px rgba(62,207,142,.45)}
+.path li.now .dot{background:var(--gold);border-color:var(--gold);animation:herePulse 2.2s ease-in-out infinite}
+.path li.gated .dot{
+  background:var(--void);border-color:var(--crit);
+  box-shadow:0 0 0 3px rgba(255,92,92,.2);animation:gateWarn 1.8s ease-in-out infinite;
+}
+.path .id{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;color:var(--dim)}
+.path .when{display:block;font-size:12px;font-weight:650;margin-top:3px}
+.path .lab{display:block;font-size:11px;color:var(--muted);margin-top:2px;line-height:1.25}
+.path li.now .id,.path li.now .when{color:var(--gold)}
+.path li.past .when{color:var(--good)}
+.anno{font-size:12px;color:var(--cyan);margin:10px 2px 0;opacity:.85}
+
+.snap{display:grid;grid-template-columns:1.15fr 1fr;gap:14px;margin-top:16px}
+@media(max-width:900px){.snap{grid-template-columns:1fr}}
+.panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;
+  position:relative;overflow:hidden;
+}
+.panel.next-panel::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--gold);
+  box-shadow:0 0 12px var(--goldGlow);animation:edgePulse 2.4s ease-in-out infinite;
+}
+.panel.stuck-panel::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--crit);
+  box-shadow:0 0 12px var(--critGlow);animation:edgePulseCrit 1.6s ease-in-out infinite;
+}
+.panel h2{margin:0 0 10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.panel ol{margin:0;padding:0;list-style:none}
+.panel li{
+  display:grid;grid-template-columns:auto 1fr auto;gap:8px 10px;align-items:start;
+  padding:9px 0;border-top:1px solid var(--line);font-size:14px;
+}
+.panel li:first-of-type{border-top:0;padding-top:0}
+.tag{font-size:10px;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:4px;white-space:nowrap}
+.tag.next{background:rgba(230,184,74,.15);color:var(--gold);border:1px solid rgba(230,184,74,.35)}
+.tag.held{background:rgba(255,92,92,.15);color:var(--crit);border:1px solid rgba(255,92,92,.4);animation:heldGlow 2s ease-in-out infinite}
+.who{font-size:12px;color:var(--dim);white-space:nowrap}
+.panel.stuck-panel li{animation:stuckNudge 3s ease-in-out infinite}
+.panel.stuck-panel li:nth-child(2){animation-delay:.4s}
+.panel.stuck-panel li:nth-child(3){animation-delay:.8s}
+
+.spine{margin-top:30px;position:relative;padding-left:var(--rail)}
+.spine::before{
+  content:"";position:absolute;left:25px;top:12px;bottom:12px;width:3px;
+  background:linear-gradient(180deg,var(--gold) 0%, var(--cyan) 18%, var(--line) 40%, var(--line) 100%);
+  border-radius:2px;box-shadow:0 0 14px rgba(230,184,74,.25);
+}
+.station{
+  position:relative;margin-bottom:16px;
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px 14px;
+}
+.station.current{
+  border-color:rgba(230,184,74,.65);
+  background:linear-gradient(165deg,rgba(230,184,74,.07),var(--panel) 40%);
+  animation:stationBreathe 3.2s ease-in-out infinite;
+}
+.station.gated{border-color:rgba(255,92,92,.35)}
+.station.past{
+  border-color:rgba(62,207,142,.25);
+  background:linear-gradient(165deg,rgba(62,207,142,.05),var(--panel) 50%);
+}
+.node{
+  position:absolute;left:calc(-1 * var(--rail) + 14px);top:22px;
+  width:26px;height:26px;border-radius:50%;
+  border:3px solid var(--lineHot);background:var(--void);z-index:2;
+}
+.station.past .node{background:var(--good);border-color:var(--good);box-shadow:0 0 12px rgba(62,207,142,.5)}
+.station.current .node{background:var(--gold);border-color:var(--gold);animation:herePulse 2.2s ease-in-out infinite}
+.station.gated .node{background:var(--void);border-color:var(--crit);animation:gateWarn 1.8s ease-in-out infinite}
+
+.st-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between}
+.st-head .left{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:baseline}
+.mid{font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--dim)}
+.station.current .mid{color:var(--gold)}
+.station.past .mid{color:var(--good)}
+.st-title{font-size:17px;font-weight:650;letter-spacing:-.01em;margin:0}
+.st-date{font-size:13px;color:var(--muted);font-weight:500}
+.here{
+  font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--void);background:var(--gold);padding:4px 10px;border-radius:4px;
+  animation:hereBadge 2.2s ease-in-out infinite;
+}
+.st-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.unlock{
+  font-size:12px;background:rgba(61,214,198,.08);color:var(--ink);
+  padding:4px 10px;border-radius:999px;border:1px solid rgba(61,214,198,.22);
+}
+.unlock b{color:var(--cyan)}
+.gate{
+  font-size:12px;color:var(--crit);background:rgba(255,92,92,.1);
+  padding:4px 10px;border-radius:999px;border:1px solid rgba(255,92,92,.3);
+}
+
+.lanes{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lane{
+  flex:1;min-width:150px;border:1px solid var(--line);border-radius:10px;
+  padding:9px 11px;background:var(--panel2);
+}
+.lane h3{margin:0 0 7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.lane ul{margin:0;padding:0;list-style:none}
+.lane li{display:grid;grid-template-columns:16px 1fr;gap:6px;align-items:start;font-size:13px;padding:4px 0}
+.lane li .g{font-size:12px;line-height:1.35;text-align:center}
+.lane li.done{color:var(--dim)}
+.lane li.done .t{text-decoration:line-through;text-decoration-color:#3A4454}
+.lane li.done .g{color:var(--good)}
+.lane li.work .g{color:var(--work)}
+.lane li.work .t{
+  background:linear-gradient(90deg,transparent,rgba(240,168,58,.14),transparent);
+  background-size:200% 100%;animation:workShimmer 2.8s linear infinite;
+  border-radius:3px;padding:0 2px;
+}
+.lane li.held .g{color:var(--crit);font-weight:700}
+.lane li.held .t{color:#FFB4B4;font-weight:600}
+.lane li.held{animation:heldRow 2.4s ease-in-out infinite;border-radius:4px;margin:1px -4px;padding-left:4px;padding-right:4px}
+.lane li.todo .g{color:var(--dim)}
+.lane .empty{font-size:12px;color:var(--dim);font-style:italic;margin:0}
+.who-em{font-style:normal;color:var(--crit);font-size:11px;margin-left:4px}
+
+.callout{margin-top:10px;font-size:12px;color:var(--cyan);opacity:.8;border-left:2px solid rgba(61,214,198,.4);padding:3px 0 3px 10px}
+
+footer.notes{
+  margin-top:36px;padding:16px 18px;border-radius:12px;
+  background:#06080C;border:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.55;
+}
+footer.notes h2{margin:0 0 8px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-radius:3px;font-size:12px}
+
+@keyframes herePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(230,184,74,.55),0 0 12px rgba(230,184,74,.35)}
+  50%{box-shadow:0 0 0 10px rgba(230,184,74,0),0 0 22px rgba(230,184,74,.55)}
+}
+@keyframes hereBadge{
+  0%,100%{box-shadow:0 0 0 0 rgba(230,184,74,.5);filter:brightness(1)}
+  50%{box-shadow:0 0 16px rgba(230,184,74,.55);filter:brightness(1.08)}
+}
+@keyframes stationBreathe{
+  0%,100%{box-shadow:0 0 0 1px rgba(230,184,74,.2),0 0 24px rgba(230,184,74,.1)}
+  50%{box-shadow:0 0 0 1px rgba(230,184,74,.35),0 0 40px rgba(230,184,74,.18)}
+}
+@keyframes spineCharge{0%,100%{opacity:.7;filter:brightness(1)}50%{opacity:1;filter:brightness(1.35)}}
+@keyframes gateWarn{
+  0%,100%{box-shadow:0 0 0 3px rgba(255,92,92,.15)}
+  50%{box-shadow:0 0 0 6px rgba(255,92,92,.28),0 0 14px rgba(255,92,92,.35)}
+}
+@keyframes heldGlow{0%,100%{box-shadow:0 0 0 rgba(255,92,92,0)}50%{box-shadow:0 0 12px rgba(255,92,92,.35)}}
+@keyframes heldRow{0%,100%{background:transparent}50%{background:rgba(255,92,92,.08)}}
+@keyframes workShimmer{0%{background-position:100% 0}100%{background-position:-100% 0}}
+@keyframes edgePulse{0%,100%{opacity:.7}50%{opacity:1}}
+@keyframes edgePulseCrit{0%,100%{opacity:.65}50%{opacity:1}}
+@keyframes stuckNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(2px)}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important}
+}
 </style>
-<header class="top"><div><h1>Own It Relaunch Board</h1><p class="sub">Eleven workstreams, up to ten milestones each. Built Sep 21, 2026 17:44 ET from the sessions' own status files.</p></div><div class="totals" aria-label="Totals"><span class="chip done">✓ 12 done</span><span class="chip active">● 18 working</span><span class="chip blocked">! 41 held up</span><span class="chip todo">○ 39 not started</span></div></header>
-<ol class="strip" aria-label="Plan milestones"><li class="soon"><span class="d">Sep 21</span><span class="w">Go-live: checkout, organic, paid ads on</span><span class="n">today</span></li><li class="soon"><span class="d">Sep 28</span><span class="w">Entitlement and affiliates live</span><span class="n">7 days</span></li><li class=""><span class="d">Oct 5</span><span class="w">First read: organic and paid</span><span class="n">14 days</span></li><li class=""><span class="d">Oct 13</span><span class="w">Ads scale decision on the ROAS gate</span><span class="n">22 days</span></li><li class=""><span class="d">Nov 9</span><span class="w">Software to VIP</span><span class="n">49 days</span></li><li class=""><span class="d">Dec 7</span><span class="w">v1 and Black Friday</span><span class="n">77 days</span></li><li class=""><span class="d">Dec 14</span><span class="w">Readout: $100k month</span><span class="n">84 days</span></li></ol>
-<section class="held"><h2>Holding us up</h2>
-<ol><li><span class="who">Hassan → T.J.</span><span class="ws">P0</span><span class="t">Policies v1.0 re-dated to 2026-09-21 with no installment language</span><span class="due">overdue since Sep 18</span><span class=note>Terms/Privacy entity blanks still empty; need exact legal entity name+type tonight</span></li><li><span class="who">past due</span><span class="ws">P4</span><span class="t">Keyword map and 13-week calendar and review checklist</span><span class="due">overdue since Sep 18</span><span class=note>Files on disk since Sept 16 midday, reviewed by Fable, review card sent; awaiting T.J. read</span></li><li><span class="who">T.J.</span><span class="ws">P10</span><span class="t">T.J. reads and edits the operator playbook</span><span class="due">overdue since Sep 18</span><span class=note>Playbook drafted and truth-audited; T.J. has not read it, and no call has been run from it</span></li><li><span class="who">Hassan, then T.J.</span><span class="ws">P10</span><span class="t">GHL access and meeting tool and recording setting to P10</span><span class="due">overdue since Sep 18</span><span class=note>GHL owner login expected from Hassan Sept 18 (PLAN-50); T.J. then creates the shared sub-account user. The meeting-tool and recording answers need no one but T.J.</span></li><li><span class="who">T.J.</span><span class="ws">P0</span><span class="t">Send counsel the template review and wholesaling memo and the agents question</span><span class="due">overdue since Sep 19</span><span class=note>Three email bodies ready in legal/counsel-emails-2026-09-16.md; counsel name needed</span></li><li><span class="who">T.J.</span><span class="ws">P4</span><span class="t">Grant P4 GHL blog and Search Console and GA4 and YouTube channel</span><span class="due">overdue since Sep 19</span><span class=note>GHL login expected from Hassan Sept 18; Search Console, GA4, YouTube handle and the deal file in inbox/deals/ still open</span></li><li><span class="who">T.J.</span><span class="ws">P6</span><span class="t">Taxonomy and blocked-topic list and topic tags signed off</span><span class="due">overdue since Sep 19</span><span class=note>Drafts done in build/p6; sign-off steps in needs-tj/P6.md (60 min)</span></li><li><span class="who">T.J.</span><span class="ws">P8</span><span class="t">Approve the AI module sales-page paragraph and titles</span><span class="due">overdue since Sep 19</span><span class=note>sales paragraph v1.1 (no dates) in review; v1.2 after the offer doc is approved</span></li><li><span class="who">past due</span><span class="ws">P12</span><span class="t">Scheduler research: cheapest capable option for six handles</span><span class="due">overdue since Sep 19</span><span class=note>All research in and checked against vendor pages; Opus writing the scheduler memo</span></li><li><span class="who">past due</span><span class="ws">P9</span><span class="t">Definitions file signed and fixture weeks built</span><span class="due">overdue since Sep 20</span><span class=note>Built and Codex-checked; sign-off list is scoreboard/DEFINITIONS.md section 10</span></li><li><span class="who">LIO-290 (Hassan login Sept 18)</span><span class="ws">P10</span><span class="t">GHL calendars and pipeline and fields and recording-notice gate built</span><span class="due">overdue since Sep 20</span><span class=note>Nothing built in GHL yet. A build script exists (a document, not a calendar). No booking, mock call or real call has gone through it.</span></li><li><span class="who">T.J. (mailing address)</span><span class="ws">P0</span><span class="t">Privacy contact email + mailing address</span><span class="due">due Sep 21</span><span class=note>Email contact@ownitu.com set; mailing address still open</span></li><li><span class="who">T.J. (subject/beat OK)</span><span class="ws">P1</span><span class="t">S3 Hammer outline OK from T.J. (volume A/B/C)</span><span class="due">due Sep 21</span><span class=note>Volume A locked (18@6/day) by T.J. Still need subject/beat OK before bodies.</span></li><li><span class="who">T.J. (Tue)</span><span class="ws">P2</span><span class="t">Meta Business / Ad account access for OIU Paid</span><span class="due">due Sep 21</span><span class=note>Not sure yet; aiming Tue</span></li><li><span class="who">T.J.</span><span class="ws">P6</span><span class="t">Anthropic key and Voyage go and Supabase dev creds to P6</span><span class="due">due Sep 21</span><span class=note>Anthropic key + Voyage go are T.J. (20 min); Supabase creds come from P7 Sept 18</span></li><li><span class="who">T.J.</span><span class="ws">P9</span><span class="t">Whop read-only key and Google account and Supabase org to P9</span><span class="due">due Sep 21</span><span class=note>Whop logins expected Thu Sept 18 (PLAN-50); Supabase now follows P7, no separate ask</span></li><li><span class="who">T.J.</span><span class="ws">P11</span><span class="t">Verified on-camera numbers + $997 inclusions</span><span class="due">due Sep 21</span><span class=note>No invented claims</span></li><li><span class="who">T.J. + Hassan</span><span class="ws">P0</span><span class="t">Ali-removal checklist verified complete</span><span class="due">due Sep 22</span><span class=note>Live still Ali + strategy-call + fake scarcity; cutover=GHL scrub</span></li><li><span class="who">T.J.</span><span class="ws">P0</span><span class="t">Answer the P0 manifest items 3 to 8</span><span class="due">due Sep 22</span><span class=note>Steps in handoffs/needs-tj/P0.md section 4</span></li><li><span class="who">T.J. (Tue Chrome)</span><span class="ws">P7</span><span class="t">Hassan logins verified in T.J. Chrome</span><span class="due">due Sep 22</span><span class=note>He has all logins; verify in Chrome tomorrow</span></li><li><span class="who">T.J.</span><span class="ws">P11</span><span class="t">Releases + testimonial consents ready on site</span><span class="due">due Sep 22</span><span class=note>Any members for testimonials?</span></li><li><span class="who">T.J. login verify + GHL scrub</span><span class="ws">P1</span><span class="t">Live uownit.com cut off Ali strategy-call funnel</span><span class="due">due Sep 23</span><span class=note>Fetched Sep 21: Ali story, ONLY 3 SPOTS, Book Strategy Call ×8; zero Whop</span></li><li><span class="who">Hassan Whop access</span><span class="ws">P1</span><span class="t">Whop checkout embedded + $67 bump + VIP $1→$197</span><span class="due">due Sep 23</span><span class=note>No Whop on live page tonight</span></li><li><span class="who">T.J. GHL login for Lifecycle</span><span class="ws">P1</span><span class="t">GHL workflows wired for S1/S2/S3</span><span class="due">due Sep 23</span><span class=note>No customer sends until T.J. OK</span></li><li><span class="who">T.J.</span><span class="ws">P1</span><span class="t">Funnel go-live typed OK before ads</span><span class="due">due Sep 23</span><span class=note>Platform NO-GO until above green</span></li><li><span class="who">Platform + Creative + Meta access</span><span class="ws">P2</span><span class="t">Ads stay OFF until Platform + Creative + Purchase event green</span><span class="due">due Sep 23</span><span class=note>Paid RED; paper campaign only</span></li><li><span class="who">T.J.</span><span class="ws">P3</span><span class="t">Real testimonial collection from the 20 current members</span><span class="due">due Sep 23</span><span class=note>Outreach, consent pointer and tracker drafted in testimonials/; go needed by Sept 17 in the P3 session</span></li><li><span class="who">T.J.</span><span class="ws">P6</span><span class="t">Coach rules generalized for worldwide members; AI side of the machine feasibility note</span><span class="due">due Sep 23</span><span class=note>Worldwide rules and AI feasibility note delivered Sept 16; four decisions in needs-tj/P6.md (15 min)</span></li><li><span class="who">all gates</span><span class="ws">P2</span><span class="t">Ads flip Wed late / Thu if gates green</span><span class="due">due Sep 24</span><span class=note>US only; ~$200/day; no scale without ROAS gate</span></li><li><span class="who">Hassan</span><span class="ws">P3</span><span class="t">Hassan introduces the 36 agents</span><span class="due">due Sep 26</span><span class=note>T.J. asks Hassan</span></li><li><span class="who">T.J.</span><span class="ws">P4</span><span class="t">Post 1 published with editorial policy page and lead magnet</span><span class="due">due Sep 26</span><span class=note>Publish only on T.J.&#x27;s go; GHL login check moved to the morning of Sept 22 (tell Planning then if missing); Michigan paragraph needs P0 clearance by Sept 25</span></li><li><span class="who">T.J.</span><span class="ws">P5</span><span class="t">Design guidance and logo source and hero decision to P5</span><span class="due">due Sep 26</span><span class=note>eight-question form in handoffs/needs-tj/P5.md</span></li><li><span class="who">T.J.</span><span class="ws">P8</span><span class="t">Pick October dates for the LightSpeed walkthrough and review batches and recording days</span><span class="due">due Sep 26</span><span class=note>October dates plus B2 listing and B3 formula; steps in needs-tj/P8.md</span></li><li><span class="who">T.J. (shared GHL user, LIO-235)</span><span class="ws">P5</span><span class="t">Control-arm baseline captured Sept 21 and Sept 28</span><span class="due">due Sep 28</span><span class=note>runbook ready; first capture Sept 21</span></li><li><span class="who">P7 (LIO-274)</span><span class="ws">P10</span><span class="t">Settlement workflows wired to P7 events</span><span class="due">due Sep 28</span><span class=note>Workflow specs written; wiring waits on entitlement events</span></li><li><span class="who">counsel</span><span class="ws">P3</span><span class="t">Invite the agents</span><span class="due">due Oct 3</span><span class=note>Counsel&#x27;s answer (LIO-225) and Hassan&#x27;s introduction, then T.J.&#x27;s go</span></li><li><span class="who">T.J.</span><span class="ws">P8</span><span class="t">Silent 45 to 90 second deal-analysis screen recording for P5</span><span class="due">due Oct 3</span><span class=note>T.J. records per-shot clips (Lesson 2 shot list, shots 10 to 17) to P5&#x27;s page spec; serves the page and the ad team; due Oct 3</span></li><li><span class="who">Hassan (Meta logins, expected Thu Sept 18)</span><span class="ws">P9</span><span class="t">Meta module and grants reader on</span><span class="due">due Oct 5</span><span class=note>PLAN-45 moved ads to Sept 21; ads_read via Hassan; spend keyed by hand until then</span></li><li><span class="who">Hassan</span><span class="ws">P6</span><span class="t">Hassan&#x27;s 2-hour block on contested items</span><span class="due">due Oct 8</span><span class=note>2-hour block on contested items; scheduling with Hassan</span></li><li><span class="who">T.J.</span><span class="ws">P8</span><span class="t">Lessons 1 and 2 recorded and uploaded hidden</span><span class="due">due Oct 9</span><span class=note>waits on LIO-280 dates and B2/B3</span></li><li><span class="who">Hassan</span><span class="ws">P4</span><span class="t">Hassan deal-desk hour weekly from October</span><span class="due">due Oct 30</span><span class=note>T.J. schedules; four recorded hours by Oct 30</span></li></ol>
-</section>
-<section class="board"><h2>Workstreams</h2>
-<div class="row"><div class="lab"><span class="p">P0</span><span class="nm">Legal and brand</span><span class="up">updated 2026-09-21 17:44 by Nikola (CoS)</span></div><ol class="cells"><li class="cell done" title="GATE-ENTITY Legal entity name + type filled for Terms/Privacy/Whop"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Legal entity name+type for Terms/Privacy/Whop</span><span class="when">done Sep 21</span><span class=note>Own It U LLC (Thomas Sep 21)</span></li><li class="cell blocked" title="GATE-PRIVACY Privacy contact email + mailing address"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Privacy contact email + mailing address</span><span class="when">due Sep 21</span><span class=hold>waiting on T.J. (mailing address)</span></li><li class="cell blocked" title="LIO-228 Ali-removal checklist verified complete"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Ali scrub verified complete on live site</span><span class="when">due Sep 22</span><span class=hold>waiting on T.J. + Hassan</span></li><li class="cell todo" title="GATE-POLICIES Terms, Privacy, refund live on sales path"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Terms/Privacy/refund live on sales path</span><span class="when">due Sep 23</span><span class=note>Blocked behind entity + contact</span></li><li class="cell done" title="LIO-220 Re-cut launch-gate email to the single signature"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Re-cut launch-gate email to the single signature</span><span class="when">done Sep 16</span><span class=note>Closed by PLAN-48: no Hassan sign-off; residual logged in legal/README.md</span></li><li class="cell overdue" title="LIO-222 Policies v1.0 re-dated to 2026-09-21 with no installment language"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Policies v1.0 re-dated to 2026-09-21 with no installment…</span><span class="when">due Sep 18</span><span class=hold>waiting on Hassan → T.J.</span></li><li class="cell done" title="LIO-223 Log the landing-page residual and the pre-ads re-review"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Log the landing-page residual and the pre-ads re-review</span><span class="when">done Sep 16</span><span class=note>Residual logged; T.J. re-reviews the page by Oct 3 before any paid ad</span></li><li class="cell overdue" title="LIO-224 Send counsel the template review and wholesaling memo and the agents question"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Send counsel the template review and wholesaling memo and the…</span><span class="when">due Sep 19</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="LIO-227 Answer the P0 manifest items 3 to 8"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Answer the P0 manifest items 3 to 8</span><span class="when">due Sep 22</span><span class=hold>waiting on T.J.</span></li><li class="cell active" title="LIO-301 $10k Desk first-deal guarantee: terms, condition checklist, refund path"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">$10k Desk first-deal guarantee: terms, condition checklist…</span><span class="when">due Sep 23</span><span class=note>Draft v1.0 in legal/policies/desk-first-deal-guarantee.md; awaiting T.J. and counsel; not on any page</span></li></ol><p class="more">+3 later: Worldwide-consumer compliance note for the course, VIP and coaching packages (Sep 23); Counsel answers: agents earning affiliate fees (Sep 26); Counsel signs off contract templates (Nov 10)</p></div>
-<div class="row"><div class="lab"><span class="p">P1</span><span class="nm">Funnel and checkout</span><span class="up">updated 2026-09-21 17:27 by Nikola (CoS)</span></div><ol class="cells"><li class="cell blocked" title="GATE-LIVE Live uownit.com cut off Ali strategy-call funnel"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Live site off Ali strategy-call funnel</span><span class="when">due Sep 23</span><span class=hold>waiting on T.J. login verify + GHL scrub</span></li><li class="cell blocked" title="GATE-WHOP Whop checkout embedded + $67 bump + VIP $1→$197"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Whop checkout + bump + VIP trial live</span><span class="when">due Sep 23</span><span class=hold>waiting on Hassan Whop access</span></li><li class="cell todo" title="GATE-CONSENT Email+phone before Whop; separate unchecked SMS consent"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Email/phone step + unchecked SMS consent</span><span class="when">due Sep 23</span><span class=note>Launch gate §6.2</span></li><li class="cell todo" title="GATE-CELL Mobile cellular checkout test passed"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Mobile cellular checkout test passed</span><span class="when">due Sep 23</span><span class=note>Required before ads</span></li><li class="cell todo" title="GATE-WEBHOOK Whop payment.succeeded → GHL buyer tag (manual OK week 1)"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Whop→GHL tag on purchase</span><span class="when">due Sep 23</span><span class=note>Feeds S1</span></li><li class="cell blocked" title="S3-OUTLINE S3 Hammer outline OK from T.J. (volume A/B/C)"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">S3 outline: Volume A locked; need subject OK</span><span class="when">due Sep 21</span><span class=hold>waiting on T.J. (subject/beat OK)</span></li><li class="cell todo" title="S3-BODIES S3 plain-text bodies drafted"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">S3 bodies drafted (post outline OK)</span><span class="when">due Sep 22</span><span class=note>~12h after outline OK</span></li><li class="cell todo" title="S1S2 S1 onboarding + S2 checkout recovery drafted"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">S1 + S2 drafted for launch</span><span class="when">due Sep 23</span><span class=note>After S3</span></li><li class="cell blocked" title="GHL-WIRE GHL workflows wired for S1/S2/S3"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">GHL workflows wired S1/S2/S3</span><span class="when">due Sep 23</span><span class=hold>waiting on T.J. GHL login for Lifecycle</span></li><li class="cell blocked" title="GATE-GO Funnel go-live typed OK before ads"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Funnel go-live typed OK before ads</span><span class="when">due Sep 23</span><span class=hold>waiting on T.J.</span></li></ol><p class="more">+1 later: Prior P1 Linear milestones parked behind launch gate</p></div>
-<div class="row"><div class="lab"><span class="p">P2</span><span class="nm">Paid ads and UGC</span><span class="up">updated 2026-09-21 17:44 by Nikola (CoS)</span></div><ol class="cells"><li class="cell blocked" title="ADS-RED Ads stay OFF until Platform + Creative + Purchase event green"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Ads OFF until Platform+Creative+Purchase green</span><span class="when">due Sep 23</span><span class=hold>waiting on Platform + Creative + Meta access</span></li><li class="cell blocked" title="META-ACCESS Meta Business / Ad account access for OIU Paid"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Meta Business access for OIU Paid</span><span class="when">due Sep 21</span><span class=hold>waiting on T.J. (Tue)</span></li><li class="cell todo" title="PIXEL-CAPI Meta pixel + CAPI Purchase verified from Whop"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Pixel + CAPI Purchase verified</span><span class="when">due Sep 23</span><span class=note>After Whop path live</span></li><li class="cell done" title="CAMP-PAPER Paper campaign structure drafted (US Purchase $200)"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Paper campaign: US Purchase ~$200/day</span><span class="when">done Sep 21</span><span class=note>1 Broad ad set; hooks from Creative only; paused until green</span></li><li class="cell done" title="ROAS-GATE ROAS gate checklist (1.5x net after fees+10% reserve)"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">ROAS gate checklist written</span><span class="when">done Sep 21</span><span class=note>YES all cash collected (course+bump+VIP+Op/Desk); separate scoreboard lines</span></li><li class="cell done" title="SCOREBOARD Daily paid scoreboard fields locked"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Daily paid scoreboard fields locked</span><span class="when">done Sep 21</span><span class=note>spend/CPM/CTR/VSL/checkout/CPA/VIP/refunds/gate ROAS…</span></li><li class="cell todo" title="CREATIVES-IN Launch creatives received from Creative (post-shoot)"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Launch creatives in from Creative</span><span class="when">due Sep 23</span><span class=note>After Tue shoot + Wed edit</span></li><li class="cell blocked" title="ADS-FLIP Ads flip Wed late / Thu if gates green"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Ads flip Wed late / Thu if green</span><span class="when">due Sep 24</span><span class=hold>waiting on all gates</span></li><li class="cell todo" title="UGC-PLAN Post-launch UGC plan (parked behind launch)"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Post-launch UGC plan (parked)</span><span class="when">due Sep 28</span><span class=note>Not launch-critical</span></li><li class="cell todo" title="SCALE First scale decision after ~20 purchases"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Scale decision after ~20 purchases</span><span class="when">due Oct 15</span><span class=note>Day-22 gate</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P3</span><span class="nm">Affiliates</span><span class="up">updated 2026-09-16 13:20 by P3</span></div><ol class="cells"><li class="cell blocked" title="LIO-304 Real testimonial collection from the 20 current members"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Testimonials from the 20 members (5 consented by Sept 23)</span><span class="when">due Sep 23</span><span class=hold>waiting on T.J.</span></li><li class="cell active" title="LIO-245 Affiliate program document and swipe file against the claims file"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Program doc, swipe file, invitations</span><span class="when">due Sep 24</span><span class=note>Drafted and reviewed; waiting on T.J. sign-off and D1 to D6</span></li><li class="cell active" title="LIO-247 Finder&#x27;s fee manual process for Operator and Desk"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Finder&#x27;s fee process and referral-id spec</span><span class="when">due Sep 26</span><span class=note>Drafted; in review</span></li><li class="cell todo" title="LIO-246 Configure Whop affiliate program: 30%/20%/Partner 40% override and 30-day cookie and hold"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Configure Whop affiliates and run acceptance tests</span><span class="when">due Sep 26</span><span class=note>Starts when P1&#x27;s Whop products exist (LIO-230, Sept 19) and the Operations role is granted; non-US eligibility question to Whop support by Sept 22</span></li><li class="cell blocked" title="LIO-249 Hassan introduces the 36 agents"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Hassan introduces the 36 agents</span><span class="when">due Sep 26</span><span class=hold>waiting on Hassan</span></li><li class="cell todo" title="LIO-248 Invite the 20 members"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Invite the 20 members</span><span class="when">due Sep 28</span><span class=note>Invite text ready in affiliate/invitations.md; needs LIO-245 sign-off, LIO-246, and T.J.&#x27;s go</span></li><li class="cell blocked" title="LIO-250 Invite the agents"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Invite the 36 agents</span><span class="when">due Oct 3</span><span class=hold>waiting on counsel</span></li><li class="cell todo" title="LIO-251 Monthly payout run and leaderboard (names and counts only)"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Monthly payout runs Nov 1 and Dec 1</span><span class="when">due Dec 1</span><span class=note>Checklist in affiliate/program.md section 10; T.J. approves each batch</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P4</span><span class="nm">Blog and YouTube</span><span class="up">updated 2026-09-17 00:10 by P4</span></div><ol class="cells"><li class="cell overdue" title="LIO-253 Keyword map and 13-week calendar and review checklist"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Keyword map, 13-week calendar, review checklist</span><span class="when">due Sep 18</span><span class=note>Files on disk since Sept 16 midday, reviewed by Fable, review card sent; awaiting T.J. read</span></li><li class="cell overdue" title="LIO-252 Grant P4 GHL blog and Search Console and GA4 and YouTube channel"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">T.J. grants Search Console, GA4, YouTube; names folder</span><span class="when">due Sep 19</span><span class=hold>waiting on T.J.</span></li><li class="cell active" title="LIO-307 Keyword map: remote and international investor cluster added, first 30 days re-ranked"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Remote-investor cluster added, first 30 days re-ranked</span><span class="when">due Sep 23</span><span class=note>Cluster added (32 rows), weeks 1 to 5 re-ranked, lead magnet reframed, PLAN-43 sweep done; review card sent; awaiting T.J. read</span></li><li class="cell active" title="LIO-254 Post 1 drafted and reviewed"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Post 1 drafted and reviewed</span><span class="when">due Sep 24</span><span class=note>Pre-draft on disk; rule-22 truth audit done (24 fixes, P4-26); real numbers from inbox/deals/ by Sept 19 or the worked-example claims come out by Sept 25</span></li><li class="cell blocked" title="LIO-255 Post 1 published with editorial policy page and lead magnet"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Post 1 published with policy page and lead magnet</span><span class="when">due Sep 26</span><span class=hold>waiting on T.J.</span></li><li class="cell todo" title="LIO-256 Weekly cadence: one post and one video and 5 to 8 Shorts"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Weekly cadence: one post, one video, 5 to 8 Shorts</span><span class="when">due Oct 24</span><span class=note>Pre-drafts for weeks 2 and 4 and the first video script are on disk; long-form video is T.J. screen recordings only (deal-desk segments excluded, P4-22)</span></li><li class="cell blocked" title="LIO-258 Hassan deal-desk hour weekly from October"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Hassan deal-desk hour weekly from October</span><span class="when">due Oct 30</span><span class=hold>waiting on Hassan</span></li><li class="cell todo" title="LIO-257 Monthly reports Oct 15 and Nov 13 and Dec 15"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Monthly reports Oct 15, Nov 13, Dec 15</span><span class="when">due Dec 15</span><span class=note>Zero baseline Sept 22, first cut Oct 10 for P2</span></li><li class="cell done" title="P4-ADV Opus advisory on plan v2 reconciled: URL and tag verification Sept 23, baseline Sept 22, consent metadata, review load cut"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Plan v2 advisory reconciled (Sept 23 GHL check, Sept 22 baseline)</span><span class="when">done Sep 16</span><span class=note>content/P4-plan.md Advisory and Reconciliation; decisions P4-14, P4-15</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P5</span><span class="nm">Landing page redesign</span><span class="up">updated 2026-09-16 23:30 by P5</span></div><ol class="cells"><li class="cell done" title="LIO-298 Full site copy rewrite and offer review (Opus copy chief, Kern and Deiss frameworks)"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Site copy rewrite v2 (worldwide audience)</span><span class="when">done Sep 16</span><span class=note>v2 accepted P5-D17; P0 claims check requested</span></li><li class="cell blocked" title="LIO-259 Design guidance and logo source and hero decision to P5"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Direction pick, logo source, hero decision</span><span class="when">due Sep 26</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="LIO-297 Control-arm baseline captured Sept 21 and Sept 28"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Control-arm baseline, Sept 21 and 28</span><span class="when">due Sep 28</span><span class=hold>waiting on T.J. (shared GHL user, LIO-235)</span></li><li class="cell done" title="LIO-260 Brand system and wireframe and copy architecture keyed to the claims file"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Brand system, wireframe and copy architecture</span><span class="when">done Sep 16</span><span class=note>wireframe v2, four directions, tokens/components, page prototype, ad templates, SVG crest (P5-D19 to D26); only the direction pick is left to promote to design.md</span></li><li class="cell active" title="LIO-305 Machine-on-screen demo section: design and demo content"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Machine-on-screen demo section</span><span class="when">due Oct 3</span><span class=note>section designed and limited to what exists (P5-D20); static frame Sept 21, LIO-294 clip Oct 3 (P8)</span></li><li class="cell todo" title="LIO-261 Redesigned page and three variants built unpublished in GHL"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Page and three variants built unpublished in GHL</span><span class="when">due Oct 10</span><span class=note>prototype truth-audited (P5-D41): 16 false statements removed; publishing needs the course inventory, brokerage proof files and an audit re-run on the day</span></li><li class="cell todo" title="LIO-262 A/B test running"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">A/B test running (your go)</span><span class="when">due Oct 13</span><span class=note>waiting on T.J.</span></li><li class="cell todo" title="LIO-263 Winner live"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Winner live (your go)</span><span class="when">due Oct 27</span><span class=note>five funnel pages: copy of record and prototypes done (P5-D27); publishing waits on your go</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P6</span><span class="nm">AI coach</span><span class="up">updated 2026-09-16 16:15 by P6</span></div><ol class="cells"><li class="cell overdue" title="LIO-265 Taxonomy and blocked-topic list and topic tags signed off"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Taxonomy, blocked topics, tags signed off</span><span class="when">due Sep 19</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="LIO-264 Anthropic key and Voyage go and Supabase dev creds to P6"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Anthropic key, Voyage go, Supabase dev creds</span><span class="when">due Sep 21</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="LIO-310 Coach rules generalized for worldwide members; AI side of the machine feasibility note"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Worldwide rules; AI side of the Machine note</span><span class="when">due Sep 23</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="LIO-267 Hassan&#x27;s 2-hour block on contested items"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Hassan 2-hour block on contested items</span><span class="when">due Oct 8</span><span class=hold>waiting on Hassan</span></li><li class="cell active" title="LIO-266 Ingestion and eval set and guardrails and chat page"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Ingestion, eval set, guardrails, chat page</span><span class="when">due Oct 9</span><span class=note>Safety half on schedule without curriculum: 207 tests, zero S1 on 200 adversarial, drill built (staging run needs dev project Sept 18). 90% question gate moves to LIO-269</span></li><li class="cell todo" title="LIO-268 Coach v0 on staging behind the advisor flag"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Coach v0 on staging behind advisor flag</span><span class="when">due Oct 12</span><span class=note>Staging for internal review on schedule; P6 recommends holding beta opening until curriculum is ingested (T.J. call)</span></li><li class="cell todo" title="LIO-269 Coach open to members"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Coach open to members</span><span class="when">due Dec 7</span><span class=note>At risk: needs LightSpeed transcripts, now pulled in October after LIO-280 walkthrough, plus tuning before Dec 7</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P7</span><span class="nm">Platform and entitlement</span><span class="up">updated 2026-09-21 17:44 by Nikola (CoS)</span></div><ol class="cells"><li class="cell done" title="CUTOVER-PATH Launch cutover = GHL scrub + Whop embed (not repo merge)"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Cutover path = GHL+Whop not repo merge</span><span class="when">done Sep 21</span><span class=note>ownit-platform NOT MERGEABLE; stub web</span></li><li class="cell blocked" title="HAAS-LOGINS Hassan logins verified in T.J. Chrome"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Hassan logins verified in T.J. Chrome</span><span class="when">due Sep 22</span><span class=hold>waiting on T.J. (Tue Chrome)</span></li><li class="cell active" title="RELEASE-STATUS release-status stays unshipped until paying member + typed go"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">release-status unshipped until real member</span><span class="when">due Sep 24</span><span class=note>P7 rule; do not flip early</span></li><li class="cell active" title="REPO-ENTITLE Entitlement service (post-launch track)"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Entitlement service (post-launch)</span><span class="when">due Sep 28</span><span class=note>Not Wed ads blocker</span></li><li class="cell todo" title="WHOP-SIGNIN Sign in with Whop and grants readable"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Whop sign-in + grants readable</span><span class="when">due Sep 28</span><span class=note>Post-launch</span></li><li class="cell todo" title="AUTO-PROVISION New buyers provisioned automatically"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">New buyers auto-provisioned</span><span class="when">due Sep 30</span><span class=note>Manual tag OK week 1</span></li><li class="cell todo" title="VIP-CALCS Calculators + deal sheet for VIP"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">VIP calculators + deal sheet</span><span class="when">due Oct 14</span><span class=note>Before first $197 renewals</span></li><li class="cell todo" title="DOC-CREATOR Document creator v1"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Document creator v1</span><span class="when">due Dec 7</span><span class=note>Later</span></li><li class="cell todo" title="LIO-273 Seed run dry-run diff approved and applied in production"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Seed dry-run diff approved and applied</span><span class="when">due Sep 28</span><span class=note>You approve the diff; also waits on P1 manual-grant runbook</span></li><li class="cell todo" title="LIO-274 Service provisions new buyers in production"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">New buyers provisioned automatically</span><span class="when">due Sep 28</span><span class=note>Stays Sep 28: LightSpeed API credential, production database and reconciliation gate all come first</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P8</span><span class="nm">AI module lessons</span><span class="up">updated 2026-09-16 23:10 by P8</span></div><ol class="cells"><li class="cell overdue" title="LIO-278 Approve the AI module sales-page paragraph and titles"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Approve the AI module sales-page paragraph and titles</span><span class="when">due Sep 19</span><span class=hold>waiting on T.J.</span></li><li class="cell active" title="LIO-300 AI module restructured into basic (AI PA) and advanced (build your machine) tracks"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">AI module restructured into basic (AI PA) and advanced (build…</span><span class="when">due Sep 23</span><span class=note>offer doc consistent across P1 and P8 (P1-D17); outline and eight lessons v1.1 done; T.J. review by Sept 23</span></li><li class="cell blocked" title="LIO-280 Pick October dates for the LightSpeed walkthrough and review batches and recording days"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Pick October dates for the LightSpeed walkthrough and review…</span><span class="when">due Sep 26</span><span class=hold>waiting on T.J.</span></li><li class="cell active" title="LIO-279 Lessons 5 to 8 scripted and claims-passed"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Lessons 5 to 8 scripted and claims-passed</span><span class="when">due Oct 2</span><span class=note>eight scripts audited for things that do not exist (49 found), fixed in two rounds and verified; Lesson 8 retitled; back with P0 for a fresh pass that checks existence too</span></li><li class="cell blocked" title="LIO-294 Silent 45 to 90 second deal-analysis screen recording for P5"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Silent 45 to 90 second deal-analysis screen recording for P5</span><span class="when">due Oct 3</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="LIO-281 Lessons 1 and 2 recorded and uploaded hidden"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Lessons 1 and 2 recorded and uploaded hidden</span><span class="when">due Oct 9</span><span class=hold>waiting on T.J.</span></li><li class="cell todo" title="LIO-282 Eight lessons live"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Eight lessons live</span><span class="when">due Oct 31</span><span class=note>Oct 31 holds only at two recordings a week</span></li><li class="cell active" title="LIO-283 Scoreboard template and three re-record scripts"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Scoreboard template and three re-record scripts</span><span class="when">due Nov 16</span><span class=note>scoreboard template done; member-speech screen and checksum tools rebuilt after an adversarial review (26 findings), under re-review; Codex review before first real use (limit until Sept 22); three re-record scripts need transcripts</span></li><li class="cell active" title="LIO-312 Advanced track Build Kit written (component of the $1,997 tier; gates the Nov 9 tier sale)"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Advanced track Build Kit written</span><span class="when">due Nov 2</span><span class=note>v0.1 on disk; tier only; name REI-OS withdrawn (P0-73), replacement pending T.J. and a search</span></li><li class="cell todo" title="P8-ADV Advanced track modules recorded and uploaded hidden"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Advanced track modules recorded</span><span class="when">due Dec 11</span><span class=note>records after the Basic track, Nov 2 to Nov 27</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P9</span><span class="nm">Daily scoreboard</span><span class="up">updated 2026-09-16 19:10 by P9</span></div><ol class="cells"><li class="cell overdue" title="LIO-285 Definitions file signed and fixture weeks built"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Definitions and fixture weeks built; T.J. to sign 11 items</span><span class="when">due Sep 20</span><span class=note>Built and Codex-checked; sign-off list is scoreboard/DEFINITIONS.md section 10</span></li><li class="cell blocked" title="LIO-284 Whop read-only key and Google account and Supabase org to P9"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Whop read key and Google account from T.J.</span><span class="when">due Sep 21</span><span class=hold>waiting on T.J.</span></li><li class="cell active" title="LIO-309 Scoreboard model: advanced-track line, Desk refund reserve, reworked CAC and geo inputs"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Model update: AI-track line, Desk reserve, worldwide CAC</span><span class="when">due Sep 25</span><span class=note>Desk reserve corrected to the guarantee&#x27;s real window (call date plus 104 days), worldwide CAC and tiers, intl fees, PLAN-49 lines; AI-track price still waits on the Sept 23 offer file</span></li><li class="cell active" title="LIO-286 Collector on Whop data with the organic block and manual access line"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Collector on Whop data, organic block, manual access line</span><span class="when">due Sep 28</span><span class=note>Collector code, gate port (48 tests), Sheet layout and 7am Apps Script built on mock data; live run and Sheet creation need LIO-284</span></li><li class="cell blocked" title="LIO-287 Meta module and grants reader on"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Meta module at go-live Sept 21; grants reader</span><span class="when">due Oct 5</span><span class=hold>waiting on Hassan (Meta logins, expected Thu Sept 18)</span></li><li class="cell todo" title="LIO-288 Weekly readout to T.J. and Hassan"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Weekly readout to T.J. and Hassan (Mondays from Sept 28)</span><span class="when">due Dec 14</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P10</span><span class="nm">Sales calls playbook</span><span class="up">updated 2026-09-17 00:30 by P10</span></div><ol class="cells"><li class="cell overdue" title="LIO-289 T.J. reads and edits the operator playbook"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">T.J. reads and edits the operator playbook</span><span class="when">due Sep 18</span><span class=hold>waiting on T.J.</span></li><li class="cell overdue" title="LIO-290 GHL access and meeting tool and recording setting to P10"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">GHL access and meeting tool and recording setting to P10</span><span class="when">due Sep 18</span><span class=hold>waiting on Hassan, then T.J.</span></li><li class="cell overdue" title="LIO-291 GHL calendars and pipeline and fields and recording-notice gate built"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">GHL calendars, pipeline, fields, recording gate</span><span class="when">due Sep 20</span><span class=hold>waiting on LIO-290 (Hassan login Sept 18)</span></li><li class="cell active" title="LIO-308 Call playbook: onboarding call as an outcome, guarantee section, non-local objections"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Playbook: outcome framing, guarantee, remote objections</span><span class="when">due Sep 23</span><span class=note>Wording drafted and checked against legal files; not read by T.J.; guarantee section gated on counsel</span></li><li class="cell blocked" title="LIO-292 Settlement workflows wired to P7 events"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Settlement workflows wired to P7 events</span><span class="when">due Sep 28</span><span class=hold>waiting on P7 (LIO-274)</span></li><li class="cell todo" title="LIO-293 Weekly numbers into the scoreboard"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Weekly numbers into the scoreboard</span><span class="when">due Oct 26</span><span class=note>Weekly report format in playbook section 8; needs LIO-291 and P9 destination</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P11</span><span class="nm">Paid ad creative + Hassan shoot</span><span class="up">updated 2026-09-21 17:44 by Nikola (CoS)</span></div><ol class="cells"><li class="cell active" title="SHOOT-LOGISTICS Hassan shoot time + location + kit confirmed"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Shoot time/location/kit confirmed</span><span class="when">due Sep 21</span><span class=note>Treat ON until cancelled; waiting Hassan replies then script detail from T.J.</span></li><li class="cell active" title="HASSAN-CONFIRM Hassan confirmed + contact path"><span class="state"><span class="g" aria-hidden="true">●</span>Working</span><span class="name">Hassan confirmed + contact path</span><span class="when">due Sep 21</span><span class=note>Treat ON until cancelled; waiting Hassan replies then script detail from T.J.</span></li><li class="cell blocked" title="NUMBERS Verified on-camera numbers + $997 inclusions"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Verified numbers + $997 inclusions</span><span class="when">due Sep 21</span><span class=hold>waiting on T.J.</span></li><li class="cell blocked" title="RELEASES Releases + testimonial consents ready on site"><span class="state"><span class="g" aria-hidden="true">!</span>Held up</span><span class="name">Releases + consents ready on site</span><span class="when">due Sep 22</span><span class=hold>waiting on T.J.</span></li><li class="cell done" title="CHECKLIST Printable shot checklist + hook/Q&amp;A pack drafted"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Shot checklist + hook/Q&amp;A pack drafted</span><span class="when">done Sep 21</span><span class=note>~/Downloads/OIU_Sept22_Shot_Checklist.md + Hook_QA_Card_Pack.md</span></li><li class="cell todo" title="SHOOT-DONE Tue Sep 22 Hassan shoot completed with usable footage"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Tue Hassan shoot done (usable footage)</span><span class="when">due Sep 22</span><span class=note>Half day+</span></li><li class="cell todo" title="VSL-HOOKS VSL + first hooks edited by Wed"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">VSL + first hooks edited by Wed</span><span class="when">due Sep 23</span><span class=note>No Ali; no income promises</span></li><li class="cell todo" title="AD-ASSETS Ad-ready creative assets (not copy-only) for launch"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Ad-ready creatives for launch</span><span class="when">due Sep 23</span><span class=note>Feeds Paid</span></li><li class="cell todo" title="S3-CLIPS Short clips for S3 emails after outline OK"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">S3 email video clips (post outline OK)</span><span class="when">due Sep 23</span><span class=note>Lifecycle owns copy; Creative owns clips</span></li><li class="cell todo" title="CONFIRM-VIDS Confirmation-page videos (Platform+Creative)"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Confirmation-page videos</span><span class="when">due Sep 24</span><span class=note>Not Lifecycle lane</span></li></ol></div>
-<div class="row"><div class="lab"><span class="p">P12</span><span class="nm">Ad generation machine</span><span class="up">updated 2026-09-16 22:05 by P12</span></div><ol class="cells"><li class="cell done" title="P12-1 Session up"><span class="state"><span class="g" aria-hidden="true">✓</span>Done</span><span class="name">Session up</span><span class="when">done Sep 16</span><span class=note>Up; Planning and P11 told</span></li><li class="cell overdue" title="P12-2 Scheduler research: cheapest capable option for six handles"><span class="state"><span class="g" aria-hidden="true">!</span>Overdue</span><span class="name">Scheduler research</span><span class="when">due Sep 19</span><span class=note>All research in and checked against vendor pages; Opus writing the scheduler memo</span></li><li class="cell todo" title="P12-3 Machine plan: what we use for three weeks, what we build after Oct 5"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Machine plan, buy now build later</span><span class="when">due Sep 23</span><span class=note>Plan before implement; launch week is not for building pipelines</span></li><li class="cell todo" title="P12-4 Asset library with lineage, performance and claims status"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Asset library with lineage</span><span class="when">due Oct 5</span><span class=note>A winning hook is worthless if nobody can find it or tell what was cleared</span></li><li class="cell todo" title="P12-5 Feedback loop: results change what gets made next, every cycle"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Feedback loop running</span><span class="when">due Oct 13</span><span class=note>The part that makes it a machine rather than a factory</span></li><li class="cell todo" title="P12-6 Pipeline implemented and operating at volume"><span class="state"><span class="g" aria-hidden="true">○</span>Not started</span><span class="name">Pipeline operating at volume</span><span class="when">due Nov 2</span><span class=note>After the Oct 5 read decides what is worth building</span></li></ol></div>
-</section>
-<footer><p class="legend"><span class="chip done">✓ Done</span> <span class="chip active">● Working</span> <span class="chip blocked">! Held up or overdue</span> <span class="chip todo">○ Not started</span></p><p>How it stays current: each session edits its own file in <code>handoffs/dashboard/</code> and runs <code>build.py</code>, or sends Planning a status line and Planning edits it. This copy is republished by Planning after each 30-minute round.</p></footer>
+</head>
+<body>
+
+<div class="banner">
+  <strong>Atlas mock v2 · alive</strong>
+  <span>Mission-control launch console. CSS motion only. IA unchanged: spine = axis, workstreams = lanes.</span>
+  <code>mock-launch-spine-v2.html</code>
+</div>
+
+<header class="top">
+  <div>
+    <h1>Own It · <span>Relaunch Path</span></h1>
+    <p class="sub">Live launch path — where we are, what’s next, stuck on whom. Done / Working / Held up / Not started.</p>
+  </div>
+  <div class="totals">
+    <span class="chip done">✓ 4 done</span>
+    <span class="chip work">● 6 working</span>
+    <span class="chip held">! 9 held up</span>
+    <span class="chip todo">○ 11 not started</span>
+  </div>
+</header>
+
+<ol class="path" aria-label="Launch spine">
+  <li class="now"><span class="dot"></span><span class="id">M0</span><span class="when">Now</span><span class="lab">Blockers</span></li>
+  <li><span class="dot"></span><span class="id">M1</span><span class="when">Tue 22</span><span class="lab">Shoot</span></li>
+  <li><span class="dot"></span><span class="id">M2</span><span class="when">Wed 23</span><span class="lab">Edits</span></li>
+  <li class="gated"><span class="dot"></span><span class="id">M3</span><span class="when">Wed–Thu</span><span class="lab">Funnel + ads</span></li>
+  <li><span class="dot"></span><span class="id">M4</span><span class="when">Oct 5–8</span><span class="lab">Day-14</span></li>
+  <li><span class="dot"></span><span class="id">M5</span><span class="when">Oct 14</span><span class="lab">VIP calcs</span></li>
+  <li><span class="dot"></span><span class="id">M6</span><span class="when">Oct 15–16</span><span class="lab">ROAS gate</span></li>
+  <li><span class="dot"></span><span class="id">M7</span><span class="when">Nov 27–30</span><span class="lab">BF</span></li>
+  <li><span class="dot"></span><span class="id">M8</span><span class="when">Dec 14</span><span class="lab">$100k</span></li>
+</ol>
+<p class="anno">Spine charges from here forward. Gold pulse = you are here. Red ring on M3 = gated until M0–M2 clear.</p>
+
+<div class="snap">
+  <section class="panel next-panel">
+    <h2>Next — unlocks the path</h2>
+    <ol>
+      <li><span class="tag next">NEXT</span><span>Confirm Hassan shoot time, location, kit</span><span class="who">→ M1</span></li>
+      <li><span class="tag next">NEXT</span><span>Legal entity name + type for Terms / Whop</span><span class="who">→ M3</span></li>
+      <li><span class="tag next">NEXT</span><span>Ali scrub verified on live uownit.com</span><span class="who">→ M3</span></li>
+    </ol>
+  </section>
+  <section class="panel stuck-panel">
+    <h2>Stuck — by who</h2>
+    <ol>
+      <li><span class="tag held">T.J.</span><span>Shoot logistics · Privacy contact · Meta access</span><span class="who">3</span></li>
+      <li><span class="tag held">Hassan → T.J.</span><span>Entity name · Logins verified</span><span class="who">2</span></li>
+      <li><span class="tag held">T.J. + Hassan</span><span>Ali scrub on live</span><span class="who">1</span></li>
+    </ol>
+  </section>
+</div>
+
+<div class="spine">
+
+  <article class="station current">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head">
+      <div class="left">
+        <span class="mid">M0</span>
+        <h2 class="st-title">Blockers on T.J. / Hassan</h2>
+        <span class="st-date">Now · Sun Sep 21</span>
+      </div>
+      <span class="here">You are here</span>
+    </div>
+    <div class="st-meta">
+      <span class="unlock">Unlocks: <b>M1 shoot + M3 funnel/ads</b></span>
+      <span class="gate">Gate open only when held-ups below clear</span>
+    </div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Creative · 1/3</h3>
+        <ul>
+          <li class="done"><span class="g">✓</span><span class="t">Shot checklist + hook/Q&A pack</span></li>
+          <li class="held"><span class="g">!</span><span class="t">Shoot time / location / kit <span class="who-em">T.J.</span></span></li>
+          <li class="held"><span class="g">!</span><span class="t">On-camera numbers + $997 inclusions <span class="who-em">T.J.</span></span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Paid · 0/1</h3>
+        <ul>
+          <li class="held"><span class="g">!</span><span class="t">Meta Business access for OIU Paid <span class="who-em">T.J.</span></span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Lifecycle · 0/1</h3>
+        <ul>
+          <li class="work"><span class="g">●</span><span class="t">S3 outline waiting subject/beat OK</span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Platform / Legal · 0/4</h3>
+        <ul>
+          <li class="held"><span class="g">!</span><span class="t">Entity name + type <span class="who-em">Hassan → T.J.</span></span></li>
+          <li class="held"><span class="g">!</span><span class="t">Privacy email + mailing address <span class="who-em">T.J.</span></span></li>
+          <li class="held"><span class="g">!</span><span class="t">Ali scrub verified on live <span class="who-em">T.J. + Hassan</span></span></li>
+          <li class="held"><span class="g">!</span><span class="t">Hassan logins verified in Chrome <span class="who-em">T.J.</span></span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="callout">Current station breathes. Held-up rows pulse warm red. Working rows shimmer.</p>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head">
+      <div class="left">
+        <span class="mid">M1</span>
+        <h2 class="st-title">Hassan shoot</h2>
+        <span class="st-date">Tue Sep 22</span>
+      </div>
+    </div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>footage for VSL / hooks</b></span></div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Creative</h3>
+        <ul>
+          <li class="todo"><span class="g">○</span><span class="t">Half-day+ shoot, usable footage</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Releases + consents on site</span></li>
+        </ul>
+      </div>
+      <div class="lane"><h3>Paid</h3><p class="empty">No items on this stop</p></div>
+      <div class="lane"><h3>Lifecycle</h3><p class="empty">No items on this stop</p></div>
+      <div class="lane"><h3>Platform / Legal</h3><p class="empty">No items on this stop</p></div>
+    </div>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head">
+      <div class="left">
+        <span class="mid">M2</span>
+        <h2 class="st-title">VSL / hooks edited · S3 bodies if outline OK</h2>
+        <span class="st-date">Wed Sep 23</span>
+      </div>
+    </div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>creative gate for ads</b></span></div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Creative</h3>
+        <ul>
+          <li class="todo"><span class="g">○</span><span class="t">VSL + first hooks edited</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Ad-ready creatives for launch</span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Lifecycle</h3>
+        <ul>
+          <li class="held"><span class="g">!</span><span class="t">S3 outline subject/beat OK <span class="who-em">T.J.</span></span></li>
+          <li class="todo"><span class="g">○</span><span class="t">S3 bodies after outline OK</span></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="station gated">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head">
+      <div class="left">
+        <span class="mid">M3</span>
+        <h2 class="st-title">Funnel live + ads ON</h2>
+        <span class="st-date">Wed–Thu Sep 23–24</span>
+      </div>
+    </div>
+    <div class="st-meta">
+      <span class="unlock">Unlocks: <b>US spend ~$200/day</b></span>
+      <span class="gate">Do not flip ads until M0–M2 gates green</span>
+    </div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Platform</h3>
+        <ul>
+          <li class="todo"><span class="g">○</span><span class="t">Whop checkout + bump + VIP trial live</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Mobile cellular checkout test passed</span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Paid</h3>
+        <ul>
+          <li class="done"><span class="g">✓</span><span class="t">Paper campaign drafted (paused)</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Pixel + CAPI Purchase verified</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Ads flip if gates green</span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Lifecycle</h3>
+        <ul>
+          <li class="todo"><span class="g">○</span><span class="t">GHL S1/S2/S3 wired</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Funnel go-live typed OK before ads</span></li>
+        </ul>
+      </div>
+      <div class="lane">
+        <h3>Legal</h3>
+        <ul>
+          <li class="todo"><span class="g">○</span><span class="t">Policies live on sales path</span></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head"><div class="left"><span class="mid">M4</span><h2 class="st-title">First read / day-14</h2><span class="st-date">~Oct 5–8</span></div></div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>scale or hold signal</b></span></div>
+    <div class="lanes">
+      <div class="lane"><h3>Paid</h3><ul><li class="todo"><span class="g">○</span><span class="t">Day-14 scoreboard read</span></li></ul></div>
+      <div class="lane"><h3>Lifecycle</h3><ul><li class="todo"><span class="g">○</span><span class="t">Organic + paid 14-day snapshot</span></li></ul></div>
+    </div>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head"><div class="left"><span class="mid">M5</span><h2 class="st-title">VIP calculators / deal sheet</h2><span class="st-date">Oct 14</span></div></div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>tools before first renewals</b></span></div>
+    <div class="lanes">
+      <div class="lane"><h3>Platform</h3><ul><li class="todo"><span class="g">○</span><span class="t">VIP calculators + deal sheet shipped</span></li></ul></div>
+    </div>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head"><div class="left"><span class="mid">M6</span><h2 class="st-title">Day-22 ROAS gate / scale decision</h2><span class="st-date">Oct 15–16</span></div></div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>spend change</b></span></div>
+    <div class="lanes">
+      <div class="lane"><h3>Paid</h3><ul><li class="todo"><span class="g">○</span><span class="t">ROAS gate decision recorded</span></li></ul></div>
+    </div>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head"><div class="left"><span class="mid">M7</span><h2 class="st-title">Black Friday window</h2><span class="st-date">Nov 27–30</span></div></div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>BF push</b></span></div>
+    <div class="lanes">
+      <div class="lane"><h3>Creative · Paid · Lifecycle</h3><p class="empty">Campaign pack TBD — hang items here when scoped</p></div>
+    </div>
+  </article>
+
+  <article class="station">
+    <span class="node" aria-hidden="true"></span>
+    <div class="st-head"><div class="left"><span class="mid">M8</span><h2 class="st-title">$100k readout</h2><span class="st-date">Dec 14</span></div></div>
+    <div class="st-meta"><span class="unlock">Unlocks: <b>month score</b></span></div>
+    <div class="lanes">
+      <div class="lane"><h3>Platform</h3><ul><li class="todo"><span class="g">○</span><span class="t">Readout deck + scoreboard freeze</span></li></ul></div>
+    </div>
+  </article>
+
+</div>
+
+<footer class="notes">
+  <h2>Alive pass — for CoS review</h2>
+  <p>
+    Dark mission-control surface. CSS-only motion: current node + badge pulse, station breathe,
+    spine charge, held-up glow, working shimmer, stuck-panel nudge. IA unchanged.
+    Respects <code>prefers-reduced-motion</code>. Not wired to production build until Nikola says go.
+  </p>
+</footer>
+</body>
+</html>
