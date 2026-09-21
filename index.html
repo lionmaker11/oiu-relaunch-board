@@ -551,36 +551,7 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
 </div>
 
-<footer class="notes" hidden>
-  <!-- internal publish notes removed from public board -->
-<script>
-  (function(){
-    function render(data){
-      var root = document.getElementById('roster');
-      if(!root || !data || !data.members) return;
-      var esc = function(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
-      root.innerHTML = data.members.map(function(m){
-        var links = (m.links||[]).map(function(L){
-          if(L.url) return '<a href="'+esc(L.url)+'" target="_blank" rel="noopener">'+esc(L.label)+'</a>';
-          return '<span class="note">'+esc(L.label)+' · '+esc(L.note||'ask T.J. for file')+'</span>';
-        }).join('') || '<span class="note">No public links yet</span>';
-        return '<article class="member '+esc(m.status)+' '+esc(m.kind||'')+'" data-id="'+esc(m.id)+'">'+
-          '<div class="m-top"><div><h3 class="m-name">'+esc(m.name)+'</h3><span class="m-role">'+esc(m.role)+'</span></div>'+
-          '<span class="status '+esc(m.status)+'">'+esc(m.status)+'</span></div>'+
-          '<div class="m-lines"><div><span class="k">Now</span>'+esc(m.now)+'</div>'+
-          '<div><span class="k">Next</span>'+esc(m.next)+'</div>'+
-          '<div class="m-when"><span class="k">When</span>'+esc(m.when)+'</div></div>'+
-          '<div class="m-links">'+links+'</div></article>';
-      }).join('');
-      var meta = document.querySelector('.team-head .meta');
-      if(meta && data.updated) meta.textContent = 'From team.json · updated '+data.updated+' · Chief of Staff updates from check-ins';
-    }
-    var seed = document.getElementById('team-seed');
-    try{ render(JSON.parse(seed.textContent)); }catch(e){}
-    fetch('team.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){ if(d) render(d); }).catch(function(){});
-  })();
-  </script>
-</footer>
+<footer class="notes" hidden></footer>
 <script type="application/json" id="team-seed">
 {
   "updated": "2026-09-21T18:05:00-04:00",
