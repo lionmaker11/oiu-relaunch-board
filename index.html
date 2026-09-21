@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>OIU Relaunch — relaunch path v2 (alive)</title>
+<title>OIU Relaunch — Launch Spine v2 (alive)</title>
 <style>
 :root{
   --void:#0B0E12; --panel:#12171F; --panel2:#171D27;
@@ -224,20 +224,76 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important}
 }
+
+  /* —— TEAM ROSTER —— */
+  .team{
+    margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:16px 16px 14px;position:relative;overflow:hidden;
+  }
+  .team::before{
+    content:"";position:absolute;inset:0 0 auto 0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--cyan),var(--gold),transparent);
+    animation:spineCharge 3s ease-in-out infinite;
+  }
+  .team-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:12px}
+  .team-head h2{margin:0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .team-head .meta{font-size:11px;color:var(--dim)}
+  .roster{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;
+  }
+  .member{
+    background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px 13px;
+    display:flex;flex-direction:column;gap:8px;min-height:148px;
+  }
+  .member.working{border-color:rgba(240,168,58,.4);box-shadow:0 0 0 1px rgba(240,168,58,.08)}
+  .member.blocked{border-color:rgba(255,92,92,.45);animation:heldRow 2.6s ease-in-out infinite}
+  .member.waiting{border-color:var(--lineHot)}
+  .member.human{background:linear-gradient(160deg,rgba(230,184,74,.06),var(--panel2) 45%)}
+  .m-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+  .m-name{font-size:15px;font-weight:650;letter-spacing:-.01em;margin:0}
+  .m-role{display:block;font-size:11px;color:var(--muted);margin-top:2px;font-weight:500}
+  .status{
+    font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 8px;border-radius:999px;white-space:nowrap;border:1px solid;
+  }
+  .status.working{color:var(--work);border-color:rgba(240,168,58,.45);background:rgba(240,168,58,.1);animation:workShimmer 2.8s linear infinite;background-size:200% 100%;
+    background-image:linear-gradient(90deg,rgba(240,168,58,.1),rgba(240,168,58,.22),rgba(240,168,58,.1))}
+  .status.waiting{color:var(--muted);border-color:var(--lineHot);background:rgba(92,103,122,.15)}
+  .status.blocked{color:var(--crit);border-color:rgba(255,92,92,.5);background:rgba(255,92,92,.12);animation:heldGlow 2s ease-in-out infinite}
+  .m-lines{font-size:12.5px;line-height:1.4;color:var(--ink);display:grid;gap:4px}
+  .m-lines .k{color:var(--dim);font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-right:6px}
+  .m-when{font-size:12px;color:var(--cyan)}
+  .m-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+  .m-links a,.m-links span.note{
+    font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--line);
+    text-decoration:none;color:var(--cyan);background:rgba(61,214,198,.06);
+  }
+  .m-links a:hover{border-color:var(--cyan);background:rgba(61,214,198,.14)}
+  .m-links span.note{color:var(--muted);border-style:dashed}
+
+
+  .m-avatar{width:40px;height:40px;border-radius:12px;flex-shrink:0;border:1px solid var(--line);
+    background:#0E141C;object-fit:cover;box-shadow:0 0 0 1px rgba(240,208,120,.12)}
+  .member.working .m-avatar{box-shadow:0 0 12px rgba(240,168,58,.25)}
+  .member.blocked .m-avatar{box-shadow:0 0 12px rgba(255,92,92,.28)}
+  .member.human .m-avatar{box-shadow:0 0 0 1px rgba(240,208,120,.35)}
+  .m-id{display:flex;gap:10px;align-items:flex-start;min-width:0}
+  .m-tagline{display:block;font-size:11px;color:var(--cyan);margin-top:3px;line-height:1.3;opacity:.9}
+
 </style>
 </head>
 <body>
 
 <div class="banner">
-  <strong>Live board · plain English</strong>
-  <span>Mission-control launch console. CSS motion only. IA unchanged: spine = axis, workstreams = lanes.</span>
-  <code>mock-launch-spine-v2.html</code>
+  <strong>Own It relaunch board · team personas</strong>
+  <span>Who’s doing what, what’s next, what’s stuck. Built for sharing with Hassan.</span>
+  <code>index.html</code>
 </div>
 
 <header class="top">
   <div>
     <h1>Own It · <span>Relaunch Path</span></h1>
-    <p class="sub">Live launch path — where we are, what’s next, stuck on whom. Done / Working / Held up / Not started.</p>
+    <p class="sub">Where we are on the relaunch, what’s next, and who’s stuck. Done / Working / Held up / Not started.</p>
   </div>
   <div class="totals">
     <span class="chip done">✓ 4 done</span>
@@ -247,37 +303,57 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
   </div>
 </header>
 
-<ol class="path" aria-label="Launch spine">
-  <li class="now"><span class="dot"></span><span class="id">Now</span><span class="when">Now</span><span class="lab">Blockers</span></li>
-  <li><span class="dot"></span><span class="id">Shoot</span><span class="when">Tue 22</span><span class="lab">Shoot</span></li>
-  <li><span class="dot"></span><span class="id">Videos</span><span class="when">Wed 23</span><span class="lab">Edits</span></li>
-  <li class="gated"><span class="dot"></span><span class="id">Go live</span><span class="when">Wed–Thu</span><span class="lab">Funnel + ads</span></li>
-  <li><span class="dot"></span><span class="id">First check</span><span class="when">Oct 5–8</span><span class="lab">Day-14</span></li>
-  <li><span class="dot"></span><span class="id">VIP tools</span><span class="when">Oct 14</span><span class="lab">VIP calcs</span></li>
-  <li><span class="dot"></span><span class="id">Scale ads</span><span class="when">Oct 15–16</span><span class="lab">ad-return check</span></li>
-  <li><span class="dot"></span><span class="id">Black Friday</span><span class="when">Nov 27–30</span><span class="lab">BF</span></li>
-  <li><span class="dot"></span><span class="id">Year-end</span><span class="when">Dec 14</span><span class="lab">$100k</span></li>
+<ol class="path" aria-label="Relaunch path">
+  <li class="now"><span class="dot"></span><span class="id">Now</span><span class="when">Today</span><span class="lab">Open blockers</span></li>
+  <li><span class="dot"></span><span class="id">Tue</span><span class="when">Sep 22</span><span class="lab">Hassan shoot</span></li>
+  <li><span class="dot"></span><span class="id">Wed</span><span class="when">Sep 23</span><span class="lab">Edit video + ads</span></li>
+  <li class="gated"><span class="dot"></span><span class="id">Wed–Thu</span><span class="when">Sep 23–24</span><span class="lab">Site live + ads on</span></li>
+  <li><span class="dot"></span><span class="id">Oct</span><span class="when">~Oct 5–8</span><span class="lab">First results check</span></li>
+  <li><span class="dot"></span><span class="id">Oct 14</span><span class="when">Oct 14</span><span class="lab">VIP tools</span></li>
+  <li><span class="dot"></span><span class="id">Oct 15</span><span class="when">Oct 15–16</span><span class="lab">Spend scale decision</span></li>
+  <li><span class="dot"></span><span class="id">Nov</span><span class="when">Nov 27–30</span><span class="lab">Black Friday</span></li>
+  <li><span class="dot"></span><span class="id">Dec</span><span class="when">Dec 14</span><span class="lab">Year-end goal check</span></li>
 </ol>
-<p class="anno">Spine charges from here forward. Gold pulse = you are here. Red ring on Go live = gated until Now–Videos clear.</p>
+<p class="anno">Gold pulse = where we are now. Red ring on “Site live + ads on” = don’t turn ads on until today’s blockers and the shoot/edits are clear.</p>
 
 <div class="snap">
   <section class="panel next-panel">
     <h2>Next — unlocks the path</h2>
     <ol>
-      <li><span class="tag next">NEXT</span><span>Confirm Hassan shoot time, location, kit</span><span class="who">→ Shoot</span></li>
-      <li><span class="tag next">NEXT</span><span>Legal entity name + type for Terms / Whop</span><span class="who">→ Go live</span></li>
-      <li><span class="tag next">NEXT</span><span>Ali scrub verified on live uownit.com</span><span class="who">→ Go live</span></li>
+      <li><span class="tag next">NEXT</span><span>T.J.: confirm Hassan shoot time, place, and kit</span><span class="who">→ Tue shoot</span></li>
+      <li><span class="tag next">NEXT</span><span>Hassan → T.J.: exact legal business name + type for website/checkout</span><span class="who">→ ads week</span></li>
+      <li><span class="tag next">NEXT</span><span>T.J. + Hassan: remove Ali from the live site and confirm it’s clean</span><span class="who">→ ads week</span></li>
     </ol>
   </section>
   <section class="panel stuck-panel">
     <h2>Up next</h2>
     <ol>
-      <li><span class="tag held">T.J.</span><span>Shoot logistics · Privacy contact · Meta setup (tomorrow)</span><span class="who">3</span></li>
-      <li><span class="tag held">Hassan → T.J.</span><span>Entity name · Logins verified</span><span class="who">2</span></li>
-      <li><span class="tag held">T.J. + Hassan</span><span>Ali scrub on live</span><span class="who">1</span></li>
+      <li><span class="tag held">T.J.</span><span>Confirm shoot details, privacy contact info, and Meta ads access</span><span class="who">3</span></li>
+      <li><span class="tag held">Hassan → T.J.</span><span>Send legal business name; T.J. must verify logins in Chrome</span><span class="who">2</span></li>
+      <li><span class="tag held">T.J. + Hassan</span><span>Finish removing Ali from the live website</span><span class="who">1</span></li>
     </ol>
   </section>
 </div>
+
+
+<section class="team" id="team" aria-label="Team roster">
+  <div class="team-head">
+    <h2>Team — who is on what, and when</h2>
+    <span class="meta">From team list · updated 2026-09-21T17:45:00-04:00 · Chief of Staff updates from check-ins</span>
+  </div>
+  <div class="roster" id="roster">
+<article class="member blocked human" data-id="tj"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/tj.svg" alt="" width="40" height="40"/><div><h3 class="m-name">T.J.</h3><span class="m-role">Decision maker</span><span class="m-tagline">Calls the shots on shoot, spend, and go-live</span></div></div><span class="status blocked">blocked</span></div><div class="m-lines"><div><span class="k">Now</span>Shoot details, business name, logins, and Ali cleanup — the path is waiting on him</div><div><span class="k">Next</span>Approve Tuesday’s shoot and the website + ads steps</div><div class="m-when"><span class="k">When</span>Tonight → Tuesday shoot</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a><a href="https://uownit.com" target="_blank" rel="noopener">uownit.com (still shows Ali — needs cleanup)</a></div></article>
+<article class="member waiting human" data-id="hassan"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/hassan.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Hassan</h3><span class="m-role">Partner + on camera</span><span class="m-tagline">Talent, logins, and the face of the shoot</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Business name/type + account logins; Tuesday on camera</div><div><span class="k">Next</span>Tuesday Sep 22 shoot · later introduce partners and deal-desk hour</div><div class="m-when"><span class="k">When</span>Tue Sep 22 shoot</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a></div></article>
+<article class="member working agent" data-id="nikola"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/nikola.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Nikola</h3><span class="m-role">Chief of Staff</span><span class="m-tagline">Keeps the crew aligned and the board honest</span></div></div><span class="status working">working</span></div><div class="m-lines"><div><span class="k">Now</span>Keeping this board current · routing T.J. · publishing the page</div><div><span class="k">Next</span>Republish when personas + icons land</div><div class="m-when"><span class="k">When</span>Ongoing</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a><a href="https://github.com/lionmaker11/oiu-relaunch-board" target="_blank" rel="noopener">Board source on GitHub</a></div></article>
+<article class="member waiting agent" data-id="mira"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/mira.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Mira</h3><span class="m-role">Shoot &amp; video</span><span class="m-tagline">Owns Hassan shoot day, sales video, and short hooks</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Shot list + hook/Q&amp;A pack ready; waiting on shoot logistics</div><div><span class="k">Next</span>Tuesday shoot → Wednesday edit sales video + ad clips</div><div class="m-when"><span class="k">When</span>Tue Sep 22 → Wed Sep 23</div></div><div class="m-links"><span class="note">Shot checklist · private file — ask T.J.</span><span class="note">Hook / Q&amp;A pack · private file — ask T.J.</span></div></article>
+<article class="member waiting agent" data-id="pax"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/pax.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Pax</h3><span class="m-role">Paid ads</span><span class="m-tagline">Owns Meta ads and the cash-return spend gate</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Ad campaign drafted (paused); needs Meta access + creatives ready</div><div><span class="k">Next</span>Ads on Wed/Thu only if blockers, shoot, and edits are clear (~$200/day US)</div><div class="m-when"><span class="k">When</span>Wed–Thu Sep 23–24 (only if clear)</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board — paid ads</a></div></article>
+<article class="member waiting agent" data-id="remy"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/remy.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Remy</h3><span class="m-role">Buyer emails</span><span class="m-tagline">Owns post-booking email, welcome, and checkout reminders</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Email-3 outline waiting on T.J. for subject + beat OK</div><div><span class="k">Next</span>Write email 3, then 1–2, then connect in GoHighLevel before ads</div><div class="m-when"><span class="k">When</span>Wed Sep 23 (after outline OK)</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board — email</a></div></article>
+<article class="member waiting agent" data-id="quinn"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/quinn.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Quinn</h3><span class="m-role">Website &amp; checkout</span><span class="m-tagline">Owns clearing the old Ali funnel and live checkout</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>Ali still on the live site; checkout path not live yet</div><div><span class="k">Next</span>Checkout live (course + bump + VIP trial) · mobile checkout test</div><div class="m-when"><span class="k">When</span>Before ads turn on</div></div><div class="m-links"><a href="https://uownit.com" target="_blank" rel="noopener">uownit.com</a><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board — website</a></div></article>
+<article class="member working agent" data-id="atlas"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/atlas.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Atlas</h3><span class="m-role">Design</span><span class="m-tagline">Owns the look of the relaunch board and creatives polish</span></div></div><span class="status working">working</span></div><div class="m-lines"><div><span class="k">Now</span>Persona icons + plain-English board for Hassan</div><div><span class="k">Next</span>Stand by for small visual fixes after publish</div><div class="m-when"><span class="k">When</span>Sep 21</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a></div></article>
+<article class="member waiting agent" data-id="orion"><div class="m-top"><div class="m-id"><img class="m-avatar" src="icons/orion.svg" alt="" width="40" height="40"/><div><h3 class="m-name">Orion</h3><span class="m-role">Own It specialist</span><span class="m-tagline">Product and offer truth checks before claims go live</span></div></div><span class="status waiting">waiting</span></div><div class="m-lines"><div><span class="k">Now</span>On call when product/offer copy needs a truth check</div><div><span class="k">Next</span>Review launch claims before ads if asked</div><div class="m-when"><span class="k">When</span>As needed</div></div><div class="m-links"><a href="https://lionmaker11.github.io/oiu-relaunch-board/" target="_blank" rel="noopener">Live board</a></div></article>
+  </div>
+  <p class="anno" style="margin-top:12px">People in gold-tint cards. Working shimmers · Blocked pulses red · Waiting stays cool. Links open plans and live pages; private files say ask T.J.</p>
+</section>
 
 <div class="spine">
 
@@ -285,15 +361,15 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
     <span class="node" aria-hidden="true"></span>
     <div class="st-head">
       <div class="left">
-        <span class="mid">Now</span>
-        <h2 class="st-title">Blockers on T.J. / Hassan</h2>
+        <span class="mid">Today</span>
+        <h2 class="st-title">Open blockers on T.J. / Hassan</h2>
         <span class="st-date">Now · Sun Sep 21</span>
       </div>
       <span class="here">You are here</span>
     </div>
     <div class="st-meta">
-      <span class="unlock">Unlocks: <b>Shoot shoot + Go live funnel/ads</b></span>
-      <span class="gate">Gate open only when held-ups below clear</span>
+      <span class="unlock">This unlocks: <b>Tue shoot · website live + ads</b></span>
+      <span class="gate">Ads and launch wait until the held-up items below are cleared</span>
     </div>
     <div class="lanes">
       <div class="lane">
@@ -307,13 +383,13 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
       <div class="lane">
         <h3>Paid · 0/1</h3>
         <ul>
-          <li class="held"><span class="g">!</span><span class="t">Meta setup (tomorrow) for OIU Paid <span class="who-em">T.J.</span></span></li>
+          <li class="held"><span class="g">!</span><span class="t">Meta Business access for OIU Paid <span class="who-em">T.J.</span></span></li>
         </ul>
       </div>
       <div class="lane">
         <h3>Lifecycle · 0/1</h3>
         <ul>
-          <li class="work"><span class="g">●</span><span class="t">email outline waiting subject/beat OK</span></li>
+          <li class="work"><span class="g">●</span><span class="t">Email-3 outline waiting on T.J. subject + beat OK</span></li>
         </ul>
       </div>
       <div class="lane">
@@ -322,23 +398,23 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
           <li class="held"><span class="g">!</span><span class="t">Entity name + type <span class="who-em">Hassan → T.J.</span></span></li>
           <li class="held"><span class="g">!</span><span class="t">Privacy email + mailing address <span class="who-em">T.J.</span></span></li>
           <li class="held"><span class="g">!</span><span class="t">Ali scrub verified on live <span class="who-em">T.J. + Hassan</span></span></li>
-          <li class="held"><span class="g">!</span><span class="t">Open account logins in Chrome (tomorrow) <span class="who-em">T.J.</span></span></li>
+          <li class="held"><span class="g">!</span><span class="t">Hassan logins verified in Chrome <span class="who-em">T.J.</span></span></li>
         </ul>
       </div>
     </div>
-    <p class="callout">Current station breathes. Held-up rows pulse warm red. Working rows shimmer.</p>
+    <p class="callout">This step is where we are now. Red items need a person. Gold items are in motion.</p>
   </article>
 
   <article class="station">
     <span class="node" aria-hidden="true"></span>
     <div class="st-head">
       <div class="left">
-        <span class="mid">Shoot</span>
+        <span class="mid">Tue</span>
         <h2 class="st-title">Hassan shoot</h2>
         <span class="st-date">Tue Sep 22</span>
       </div>
     </div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>footage for sales video / short hooks</b></span></div>
+    <div class="st-meta"><span class="unlock">Gives us: <b>video for the sales video and ad clips</b></span></div>
     <div class="lanes">
       <div class="lane">
         <h3>Creative</h3>
@@ -357,25 +433,25 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
     <span class="node" aria-hidden="true"></span>
     <div class="st-head">
       <div class="left">
-        <span class="mid">Videos</span>
-        <h2 class="st-title">sales video / short hooks edited · full emails if outline OK</h2>
+        <span class="mid">Wed</span>
+        <h2 class="st-title">Edit video + ad clips · write email 3 if outline OK</h2>
         <span class="st-date">Wed Sep 23</span>
       </div>
     </div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>creative gate for ads</b></span></div>
+    <div class="st-meta"><span class="unlock">Gives us: <b>ad creatives ready to run</b></span></div>
     <div class="lanes">
       <div class="lane">
         <h3>Creative</h3>
         <ul>
-          <li class="todo"><span class="g">○</span><span class="t">sales video + first hooks edited</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Sales video + first ad clips edited</span></li>
           <li class="todo"><span class="g">○</span><span class="t">Ad-ready creatives for launch</span></li>
         </ul>
       </div>
       <div class="lane">
         <h3>Lifecycle</h3>
         <ul>
-          <li class="held"><span class="g">!</span><span class="t">email outline subject/beat OK <span class="who-em">T.J.</span></span></li>
-          <li class="todo"><span class="g">○</span><span class="t">full emails after outline OK</span></li>
+          <li class="held"><span class="g">!</span><span class="t">Email-3 outline: T.J. OK on subject + beat <span class="who-em">T.J.</span></span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Write email-3 once outline is OK</span></li>
         </ul>
       </div>
     </div>
@@ -385,36 +461,36 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
     <span class="node" aria-hidden="true"></span>
     <div class="st-head">
       <div class="left">
-        <span class="mid">Go live</span>
-        <h2 class="st-title">Funnel live + ads ON</h2>
+        <span class="mid">Wed–Thu</span>
+        <h2 class="st-title">Website live + ads on</h2>
         <span class="st-date">Wed–Thu Sep 23–24</span>
       </div>
     </div>
     <div class="st-meta">
-      <span class="unlock">Unlocks: <b>US spend ~$200/day</b></span>
-      <span class="gate">Do not flip ads until Now–Videos gates green</span>
+      <span class="unlock">Means: <b>US ads on at about $200/day</b></span>
+      <span class="gate">Do not turn ads on until today’s blockers, the shoot, and edits are clear</span>
     </div>
     <div class="lanes">
       <div class="lane">
         <h3>Platform</h3>
         <ul>
-          <li class="todo"><span class="g">○</span><span class="t">Whop checkout + bump + VIP trial live</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Checkout live (course + bump + VIP trial)</span></li>
           <li class="todo"><span class="g">○</span><span class="t">Mobile cellular checkout test passed</span></li>
         </ul>
       </div>
       <div class="lane">
         <h3>Paid</h3>
         <ul>
-          <li class="done"><span class="g">✓</span><span class="t">Paper campaign drafted (paused)</span></li>
-          <li class="todo"><span class="g">○</span><span class="t">Pixel + purchase tracking Purchase verified</span></li>
-          <li class="todo"><span class="g">○</span><span class="t">Ads flip if gates green</span></li>
+          <li class="done"><span class="g">✓</span><span class="t">Ad campaign drafted on paper (paused)</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Purchase tracking verified end-to-end</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Turn ads on only if everything above is clear</span></li>
         </ul>
       </div>
       <div class="lane">
         <h3>Lifecycle</h3>
         <ul>
-          <li class="todo"><span class="g">○</span><span class="t">GHL S1/S2/post-booking emails wired</span></li>
-          <li class="todo"><span class="g">○</span><span class="t">Funnel go-live typed OK before ads</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">Welcome emails 1–3 connected in GoHighLevel</span></li>
+          <li class="todo"><span class="g">○</span><span class="t">T.J. types OK that the site is live before ads</span></li>
         </ul>
       </div>
       <div class="lane">
@@ -428,36 +504,36 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
   <article class="station">
     <span class="node" aria-hidden="true"></span>
-    <div class="st-head"><div class="left"><span class="mid">First check</span><h2 class="st-title">First read / day-14</h2><span class="st-date">~Oct 5–8</span></div></div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>scale or hold signal</b></span></div>
+    <div class="st-head"><div class="left"><span class="mid">Oct</span><h2 class="st-title">First results check (~2 weeks)</h2><span class="st-date">~Oct 5–8</span></div></div>
+    <div class="st-meta"><span class="unlock">Tells us: <b>whether to scale ads or hold</b></span></div>
     <div class="lanes">
-      <div class="lane"><h3>Paid</h3><ul><li class="todo"><span class="g">○</span><span class="t">Day-14 scoreboard read</span></li></ul></div>
-      <div class="lane"><h3>Lifecycle</h3><ul><li class="todo"><span class="g">○</span><span class="t">Organic + paid 14-day snapshot</span></li></ul></div>
+      <div class="lane"><h3>Paid</h3><ul><li class="todo"><span class="g">○</span><span class="t">Two-week scoreboard read</span></li></ul></div>
+      <div class="lane"><h3>Lifecycle</h3><ul><li class="todo"><span class="g">○</span><span class="t">Organic + paid snapshot at two weeks</span></li></ul></div>
     </div>
   </article>
 
   <article class="station">
     <span class="node" aria-hidden="true"></span>
-    <div class="st-head"><div class="left"><span class="mid">VIP tools</span><h2 class="st-title">VIP calculators / deal sheet</h2><span class="st-date">Oct 14</span></div></div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>tools before first renewals</b></span></div>
+    <div class="st-head"><div class="left"><span class="mid">Oct 14</span><h2 class="st-title">VIP tools (calculators + deal sheet)</h2><span class="st-date">Oct 14</span></div></div>
+    <div class="st-meta"><span class="unlock">Ready before: <b>first VIP renewals</b></span></div>
     <div class="lanes">
-      <div class="lane"><h3>Platform</h3><ul><li class="todo"><span class="g">○</span><span class="t">VIP calculators + deal sheet shipped</span></li></ul></div>
+      <div class="lane"><h3>Platform</h3><ul><li class="todo"><span class="g">○</span><span class="t">VIP calculators and deal sheet live for members</span></li></ul></div>
     </div>
   </article>
 
   <article class="station">
     <span class="node" aria-hidden="true"></span>
-    <div class="st-head"><div class="left"><span class="mid">Scale ads</span><h2 class="st-title">Day-22 ad-return check / scale decision</h2><span class="st-date">Oct 15–16</span></div></div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>spend change</b></span></div>
+    <div class="st-head"><div class="left"><span class="mid">Oct 15</span><h2 class="st-title">Spend scale decision</h2><span class="st-date">Oct 15–16</span></div></div>
+    <div class="st-meta"><span class="unlock">Decides: <b>raise, hold, or cut ad spend</b></span></div>
     <div class="lanes">
-      <div class="lane"><h3>Paid</h3><ul><li class="todo"><span class="g">○</span><span class="t">ad-return check decision recorded</span></li></ul></div>
+      <div class="lane"><h3>Paid</h3><ul><li class="todo"><span class="g">○</span><span class="t">Write down the scale / hold / cut decision</span></li></ul></div>
     </div>
   </article>
 
   <article class="station">
     <span class="node" aria-hidden="true"></span>
-    <div class="st-head"><div class="left"><span class="mid">Black Friday</span><h2 class="st-title">Black Friday window</h2><span class="st-date">Nov 27–30</span></div></div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>BF push</b></span></div>
+    <div class="st-head"><div class="left"><span class="mid">Nov</span><h2 class="st-title">Black Friday</h2><span class="st-date">Nov 27–30</span></div></div>
+    <div class="st-meta"><span class="unlock">Window for: <b>Black Friday push</b></span></div>
     <div class="lanes">
       <div class="lane"><h3>Creative · Paid · Lifecycle</h3><p class="empty">Campaign pack TBD — hang items here when scoped</p></div>
     </div>
@@ -465,8 +541,8 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 
   <article class="station">
     <span class="node" aria-hidden="true"></span>
-    <div class="st-head"><div class="left"><span class="mid">Year-end</span><h2 class="st-title">$100k readout</h2><span class="st-date">Dec 14</span></div></div>
-    <div class="st-meta"><span class="unlock">Unlocks: <b>month score</b></span></div>
+    <div class="st-head"><div class="left"><span class="mid">Dec</span><h2 class="st-title">Year-end goal check</h2><span class="st-date">Dec 14</span></div></div>
+    <div class="st-meta"><span class="unlock">Scores: <b>the year-end goal</b></span></div>
     <div class="lanes">
       <div class="lane"><h3>Platform</h3><ul><li class="todo"><span class="g">○</span><span class="t">Readout deck + scoreboard freeze</span></li></ul></div>
     </div>
@@ -475,12 +551,271 @@ footer.notes code{background:#151A22;color:var(--cyan);padding:1px 5px;border-ra
 </div>
 
 <footer class="notes">
-  <h2>Alive pass — for CoS review</h2>
+  <h2>Board copy · plain English for Hassan</h2>
   <p>
-    Dark mission-control surface. CSS-only motion: current node + badge pulse, station breathe,
-    spine charge, held-up glow, working shimmer, stuck-panel nudge. IA unchanged.
-    Respects <code>prefers-reduced-motion</code>. Not wired to production build until Nikola says go.
+    The path stays the main view. Team panel reads <code>team.json</code> (seed inlined below for static Pages;
+    live fetch when served beside the HTML). CoS updates <code>team.json</code> from pulse — no redesign.
+    Publish: copy <code>index.html</code> → <code>index.html</code> and <code>team.json</code>
+    next to it on <code>lionmaker11.github.io/oiu-relaunch-board</code>. Later <code>build.py</code> can
+    inject roster at build time the same way. Local-only artifacts use “ask T.J.” notes — no file:// for Hassan.
   </p>
+  
+  <script>
+  (function(){
+    function render(data){
+      var root = document.getElementById('roster');
+      if(!root || !data || !data.members) return;
+      var esc = function(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');};
+      root.innerHTML = data.members.map(function(m){
+        var links = (m.links||[]).map(function(L){
+          if(L.url) return '<a href="'+esc(L.url)+'" target="_blank" rel="noopener">'+esc(L.label)+'</a>';
+          return '<span class="note">'+esc(L.label)+' · '+esc(L.note||'ask T.J. for file')+'</span>';
+        }).join('') || '<span class="note">No public links yet</span>';
+        return '<article class="member '+esc(m.status)+' '+esc(m.kind||'')+'" data-id="'+esc(m.id)+'">'+
+          '<div class="m-top"><div><h3 class="m-name">'+esc(m.name)+'</h3><span class="m-role">'+esc(m.role)+'</span></div>'+
+          '<span class="status '+esc(m.status)+'">'+esc(m.status)+'</span></div>'+
+          '<div class="m-lines"><div><span class="k">Now</span>'+esc(m.now)+'</div>'+
+          '<div><span class="k">Next</span>'+esc(m.next)+'</div>'+
+          '<div class="m-when"><span class="k">When</span>'+esc(m.when)+'</div></div>'+
+          '<div class="m-links">'+links+'</div></article>';
+      }).join('');
+      var meta = document.querySelector('.team-head .meta');
+      if(meta && data.updated) meta.textContent = 'From team.json · updated '+data.updated+' · Chief of Staff updates from check-ins';
+    }
+    var seed = document.getElementById('team-seed');
+    try{ render(JSON.parse(seed.textContent)); }catch(e){}
+    fetch('team.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){ if(d) render(d); }).catch(function(){});
+  })();
+  </script>
 </footer>
+<script type="application/json" id="team-seed">
+{
+  "updated": "2026-09-21T17:55:00-04:00",
+  "updated_by": "Atlas \u2014 personas + icons",
+  "members": [
+    {
+      "id": "tj",
+      "name": "T.J.",
+      "persona": "T.J.",
+      "kind": "human",
+      "role": "Decision maker",
+      "tagline": "Calls the shots on shoot, spend, and go-live",
+      "status": "blocked",
+      "now": "Shoot details, business name, logins, and Ali cleanup \u2014 the path is waiting on him",
+      "next": "Approve Tuesday\u2019s shoot and the website + ads steps",
+      "when": "Tonight \u2192 Tuesday shoot",
+      "icon": "icons/tj.svg",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        },
+        {
+          "label": "uownit.com (still shows Ali \u2014 needs cleanup)",
+          "url": "https://uownit.com"
+        }
+      ]
+    },
+    {
+      "id": "hassan",
+      "name": "Hassan",
+      "persona": "Hassan",
+      "kind": "human",
+      "role": "Partner + on camera",
+      "tagline": "Talent, logins, and the face of the shoot",
+      "status": "waiting",
+      "now": "Business name/type + account logins; Tuesday on camera",
+      "next": "Tuesday Sep 22 shoot \u00b7 later introduce partners and deal-desk hour",
+      "when": "Tue Sep 22 shoot",
+      "icon": "icons/hassan.svg",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "nikola",
+      "name": "Nikola",
+      "persona": "Nikola",
+      "kind": "agent",
+      "role": "Chief of Staff",
+      "tagline": "Keeps the crew aligned and the board honest",
+      "status": "working",
+      "now": "Keeping this board current \u00b7 routing T.J. \u00b7 publishing the page",
+      "next": "Republish when personas + icons land",
+      "when": "Ongoing",
+      "icon": "icons/nikola.svg",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        },
+        {
+          "label": "Board source on GitHub",
+          "url": "https://github.com/lionmaker11/oiu-relaunch-board"
+        }
+      ]
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "persona": "Mira",
+      "kind": "agent",
+      "role": "Shoot & video",
+      "tagline": "Owns Hassan shoot day, sales video, and short hooks",
+      "status": "waiting",
+      "now": "Shot list + hook/Q&A pack ready; waiting on shoot logistics",
+      "next": "Tuesday shoot \u2192 Wednesday edit sales video + ad clips",
+      "when": "Tue Sep 22 \u2192 Wed Sep 23",
+      "icon": "icons/mira.svg",
+      "links": [
+        {
+          "label": "Shot checklist",
+          "url": null,
+          "note": "private file \u2014 ask T.J."
+        },
+        {
+          "label": "Hook / Q&A pack",
+          "url": null,
+          "note": "private file \u2014 ask T.J."
+        }
+      ]
+    },
+    {
+      "id": "pax",
+      "name": "Pax",
+      "persona": "Pax",
+      "kind": "agent",
+      "role": "Paid ads",
+      "tagline": "Owns Meta ads and the cash-return spend gate",
+      "status": "waiting",
+      "now": "Ad campaign drafted (paused); needs Meta access + creatives ready",
+      "next": "Ads on Wed/Thu only if blockers, shoot, and edits are clear (~$200/day US)",
+      "when": "Wed\u2013Thu Sep 23\u201324 (only if clear)",
+      "icon": "icons/pax.svg",
+      "links": [
+        {
+          "label": "Live board \u2014 paid ads",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "remy",
+      "name": "Remy",
+      "persona": "Remy",
+      "kind": "agent",
+      "role": "Buyer emails",
+      "tagline": "Owns post-booking email, welcome, and checkout reminders",
+      "status": "waiting",
+      "now": "Email-3 outline waiting on T.J. for subject + beat OK",
+      "next": "Write email 3, then 1\u20132, then connect in GoHighLevel before ads",
+      "when": "Wed Sep 23 (after outline OK)",
+      "icon": "icons/remy.svg",
+      "links": [
+        {
+          "label": "Live board \u2014 email",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "quinn",
+      "name": "Quinn",
+      "persona": "Quinn",
+      "kind": "agent",
+      "role": "Website & checkout",
+      "tagline": "Owns clearing the old Ali funnel and live checkout",
+      "status": "waiting",
+      "now": "Ali still on the live site; checkout path not live yet",
+      "next": "Checkout live (course + bump + VIP trial) \u00b7 mobile checkout test",
+      "when": "Before ads turn on",
+      "icon": "icons/quinn.svg",
+      "links": [
+        {
+          "label": "uownit.com",
+          "url": "https://uownit.com"
+        },
+        {
+          "label": "Live board \u2014 website",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "persona": "Atlas",
+      "kind": "agent",
+      "role": "Design",
+      "tagline": "Owns the look of the relaunch board and creatives polish",
+      "status": "working",
+      "now": "Persona icons + plain-English board for Hassan",
+      "next": "Stand by for small visual fixes after publish",
+      "when": "Sep 21",
+      "icon": "icons/atlas.svg",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "orion",
+      "name": "Orion",
+      "persona": "Orion",
+      "kind": "agent",
+      "role": "Own It specialist",
+      "tagline": "Product and offer truth checks before claims go live",
+      "status": "waiting",
+      "now": "On call when product/offer copy needs a truth check",
+      "next": "Review launch claims before ads if asked",
+      "when": "As needed",
+      "icon": "icons/orion.svg",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+(function(){
+  function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function card(m){
+    var links=(m.links||[]).map(function(L){
+      if(L.url) return '<a href="'+esc(L.url)+'" target="_blank" rel="noopener">'+esc(L.label)+'</a>';
+      return '<span class="note">'+esc(L.label)+' · '+esc(L.note||'ask T.J. for file')+'</span>';
+    }).join('') || '<span class="note">No public links yet</span>';
+    var icon = m.icon ? '<img class="m-avatar" src="'+esc(m.icon)+'" alt="" width="40" height="40"/>' : '';
+    var tag = m.tagline ? '<span class="m-tagline">'+esc(m.tagline)+'</span>' : '';
+    var name = esc(m.persona || m.name);
+    return '<article class="member '+esc(m.status)+' '+esc(m.kind||'')+'" data-id="'+esc(m.id)+'">'+
+      '<div class="m-top"><div class="m-id">'+icon+'<div><h3 class="m-name">'+name+'</h3><span class="m-role">'+esc(m.role)+'</span>'+tag+'</div></div>'+
+      '<span class="status '+esc(m.status)+'">'+esc(m.status)+'</span></div>'+
+      '<div class="m-lines"><div><span class="k">Now</span>'+esc(m.now)+'</div>'+
+      '<div><span class="k">Next</span>'+esc(m.next)+'</div>'+
+      '<div class="m-when"><span class="k">When</span>'+esc(m.when)+'</div></div>'+
+      '<div class="m-links">'+links+'</div></article>';
+  }
+  function render(data){
+    var root=document.getElementById('roster');
+    if(!root||!data||!data.members) return;
+    root.innerHTML=data.members.map(card).join('');
+    var meta=document.querySelector('.team-head .meta');
+    if(meta&&data.updated) meta.textContent='From team.json · updated '+data.updated+' · Chief of Staff updates from check-ins';
+  }
+  var seedEl=document.getElementById('team-seed');
+  try{ render(JSON.parse(seedEl.textContent)); }catch(e){}
+  fetch('team.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(d){ if(d) render(d); }).catch(function(){});
+})();
+</script>
+
 </body>
 </html>

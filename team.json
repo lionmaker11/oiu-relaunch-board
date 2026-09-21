@@ -1,0 +1,154 @@
+{
+  "updated": "2026-09-21T17:55:00-04:00",
+  "updated_by": "Atlas — personas + icons",
+  "members": [
+    {
+      "id": "tj",
+      "name": "T.J.",
+      "persona": "T.J.",
+      "kind": "human",
+      "role": "Decision maker",
+      "tagline": "Calls the shots on shoot, spend, and go-live",
+      "status": "blocked",
+      "now": "Shoot details, business name, logins, and Ali cleanup — the path is waiting on him",
+      "next": "Approve Tuesday’s shoot and the website + ads steps",
+      "when": "Tonight → Tuesday shoot",
+      "icon": "icons/tj.svg",
+      "links": [
+        {"label": "Live board", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"},
+        {"label": "uownit.com (still shows Ali — needs cleanup)", "url": "https://uownit.com"}
+      ]
+    },
+    {
+      "id": "hassan",
+      "name": "Hassan",
+      "persona": "Hassan",
+      "kind": "human",
+      "role": "Partner + on camera",
+      "tagline": "Talent, logins, and the face of the shoot",
+      "status": "waiting",
+      "now": "Business name/type + account logins; Tuesday on camera",
+      "next": "Tuesday Sep 22 shoot · later introduce partners and deal-desk hour",
+      "when": "Tue Sep 22 shoot",
+      "icon": "icons/hassan.svg",
+      "links": [
+        {"label": "Live board", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"}
+      ]
+    },
+    {
+      "id": "nikola",
+      "name": "Nikola",
+      "persona": "Nikola",
+      "kind": "agent",
+      "role": "Chief of Staff",
+      "tagline": "Keeps the crew aligned and the board honest",
+      "status": "working",
+      "now": "Keeping this board current · routing T.J. · publishing the page",
+      "next": "Republish when personas + icons land",
+      "when": "Ongoing",
+      "icon": "icons/nikola.svg",
+      "links": [
+        {"label": "Live board", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"},
+        {"label": "Board source on GitHub", "url": "https://github.com/lionmaker11/oiu-relaunch-board"}
+      ]
+    },
+    {
+      "id": "mira",
+      "name": "Mira",
+      "persona": "Mira",
+      "kind": "agent",
+      "role": "Shoot & video",
+      "tagline": "Owns Hassan shoot day, sales video, and short hooks",
+      "status": "waiting",
+      "now": "Shot list + hook/Q&A pack ready; waiting on shoot logistics",
+      "next": "Tuesday shoot → Wednesday edit sales video + ad clips",
+      "when": "Tue Sep 22 → Wed Sep 23",
+      "icon": "icons/mira.svg",
+      "links": [
+        {"label": "Shot checklist", "url": null, "note": "private file — ask T.J."},
+        {"label": "Hook / Q&A pack", "url": null, "note": "private file — ask T.J."}
+      ]
+    },
+    {
+      "id": "pax",
+      "name": "Pax",
+      "persona": "Pax",
+      "kind": "agent",
+      "role": "Paid ads",
+      "tagline": "Owns Meta ads and the cash-return spend gate",
+      "status": "waiting",
+      "now": "Ad campaign drafted (paused); needs Meta access + creatives ready",
+      "next": "Ads on Wed/Thu only if blockers, shoot, and edits are clear (~$200/day US)",
+      "when": "Wed–Thu Sep 23–24 (only if clear)",
+      "icon": "icons/pax.svg",
+      "links": [
+        {"label": "Live board — paid ads", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"}
+      ]
+    },
+    {
+      "id": "remy",
+      "name": "Remy",
+      "persona": "Remy",
+      "kind": "agent",
+      "role": "Buyer emails",
+      "tagline": "Owns post-booking email, welcome, and checkout reminders",
+      "status": "waiting",
+      "now": "Email-3 outline waiting on T.J. for subject + beat OK",
+      "next": "Write email 3, then 1–2, then connect in GoHighLevel before ads",
+      "when": "Wed Sep 23 (after outline OK)",
+      "icon": "icons/remy.svg",
+      "links": [
+        {"label": "Live board — email", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"}
+      ]
+    },
+    {
+      "id": "quinn",
+      "name": "Quinn",
+      "persona": "Quinn",
+      "kind": "agent",
+      "role": "Website & checkout",
+      "tagline": "Owns clearing the old Ali funnel and live checkout",
+      "status": "waiting",
+      "now": "Ali still on the live site; checkout path not live yet",
+      "next": "Checkout live (course + bump + VIP trial) · mobile checkout test",
+      "when": "Before ads turn on",
+      "icon": "icons/quinn.svg",
+      "links": [
+        {"label": "uownit.com", "url": "https://uownit.com"},
+        {"label": "Live board — website", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"}
+      ]
+    },
+    {
+      "id": "atlas",
+      "name": "Atlas",
+      "persona": "Atlas",
+      "kind": "agent",
+      "role": "Design",
+      "tagline": "Owns the look of the relaunch board and creatives polish",
+      "status": "working",
+      "now": "Persona icons + plain-English board for Hassan",
+      "next": "Stand by for small visual fixes after publish",
+      "when": "Sep 21",
+      "icon": "icons/atlas.svg",
+      "links": [
+        {"label": "Live board", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"}
+      ]
+    },
+    {
+      "id": "orion",
+      "name": "Orion",
+      "persona": "Orion",
+      "kind": "agent",
+      "role": "Own It specialist",
+      "tagline": "Product and offer truth checks before claims go live",
+      "status": "waiting",
+      "now": "On call when product/offer copy needs a truth check",
+      "next": "Review launch claims before ads if asked",
+      "when": "As needed",
+      "icon": "icons/orion.svg",
+      "links": [
+        {"label": "Live board", "url": "https://lionmaker11.github.io/oiu-relaunch-board/"}
+      ]
+    }
+  ]
+}
