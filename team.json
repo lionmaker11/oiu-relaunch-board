@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-21T18:35:00-04:00",
-  "updated_by": "Atlas \u2014 partner-board copy scrub",
+  "updated": "2026-09-21T20:51:00-04:00",
+  "updated_by": "Nikola",
   "members": [
     {
       "id": "tj",
@@ -55,7 +55,7 @@
       "now": "Keeping this board current \u00b7 routing T.J. \u00b7 publishing the page",
       "next": "Keep live board matching local redesign files",
       "when": "Ongoing",
-      "icon": "icons/nikola.svg",
+      "icon": "icons/lionmaker-agents/nikola.png",
       "links": [
         {
           "label": "Live board",
@@ -78,7 +78,7 @@
       "now": "Shot list + hook/Q&A pack ready; waiting on shoot logistics",
       "next": "Tuesday shoot \u2192 Wednesday edit sales video + ad clips",
       "when": "Tue Sep 22 \u2192 Wed Sep 23",
-      "icon": "icons/mira.svg",
+      "icon": "icons/lionmaker-agents/mira.png",
       "links": [
         {
           "label": "Shot checklist",
@@ -103,7 +103,7 @@
       "now": "Ad campaign drafted (paused); creatives after shoot \u2014 Meta setup tomorrow (not stuck)",
       "next": "Ads on Wed/Thu only if site is clean and shoot/edits are done (~$200/day US)",
       "when": "Wed\u2013Thu Sep 23\u201324 (only if clear)",
-      "icon": "icons/pax.svg",
+      "icon": "icons/lionmaker-agents/pax.png",
       "links": [
         {
           "label": "Live board \u2014 paid ads",
@@ -122,7 +122,7 @@
       "now": "Email-3 outline waiting on T.J. for subject + beat OK",
       "next": "Write email 3, then 1\u20132, then connect in GoHighLevel before ads",
       "when": "Wed Sep 23 (after outline OK)",
-      "icon": "icons/remy.svg",
+      "icon": "icons/lionmaker-agents/remy.png",
       "links": [
         {
           "label": "Live board \u2014 email",
@@ -141,7 +141,7 @@
       "now": "Ali still on the live site; checkout path not live yet",
       "next": "Checkout live (course + bump + VIP trial) \u00b7 mobile checkout test",
       "when": "Before ads turn on",
-      "icon": "icons/quinn.svg",
+      "icon": "icons/lionmaker-agents/quinn.png",
       "links": [
         {
           "label": "uownit.com",
@@ -164,7 +164,7 @@
       "now": "Icons and role tags locked; standing by for small visual fixes after publish",
       "next": "Stand by for small visual fixes after publish",
       "when": "Sep 21",
-      "icon": "icons/atlas.svg",
+      "icon": "icons/lionmaker-agents/atlas.png",
       "links": [
         {
           "label": "Live board",
@@ -183,7 +183,7 @@
       "now": "On call when product/offer copy needs a truth check",
       "next": "Review launch claims before ads if asked",
       "when": "As needed",
-      "icon": "icons/orion.svg",
+      "icon": "icons/lionmaker-agents/orion.png",
       "links": [
         {
           "label": "Live board",
