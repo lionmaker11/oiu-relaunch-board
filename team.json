@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T20:51:00-04:00",
+  "updated": "2026-09-21T21:04:00-04:00",
   "updated_by": "Nikola",
   "members": [
     {
@@ -13,7 +13,7 @@
       "now": "Hassan shoot details when he replies; Chrome logins tomorrow (already have them)",
       "next": "Tomorrow: logins in Chrome, site cleanup; Meta setup when ready \u2014 not stuck",
       "when": "Tonight \u2192 Tuesday shoot",
-      "icon": "icons/tj.svg",
+      "icon": "icons/lionmaker-agents/tj.png",
       "links": [
         {
           "label": "Live board",
@@ -36,7 +36,7 @@
       "now": "Tuesday on camera \u2014 shoot time/place when he replies",
       "next": "Tuesday Sep 22 shoot \u00b7 later introduce partners and deal-desk hour",
       "when": "Tue Sep 22 shoot",
-      "icon": "icons/hassan.svg",
+      "icon": "icons/lionmaker-agents/hassan.png",
       "links": [
         {
           "label": "Live board",
