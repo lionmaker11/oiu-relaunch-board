@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-22T10:28:57-04:00",
+  "updated": "2026-09-22T12:43:38-04:00",
   "updated_by": "Nikola",
   "members": [
     {
@@ -10,9 +10,9 @@
       "role": "Decision maker",
       "tagline": "Calls the shots on shoot, spend, and go-live",
       "status": "working",
-      "now": "Hassan shoot details when he replies; Chrome logins tomorrow (already have them)",
-      "next": "Tomorrow: logins in Chrome, site cleanup; Meta setup when ready \u2014 not stuck",
-      "when": "Tonight \u2192 Tuesday shoot",
+      "now": "Income focus this week; OIU on soft hold after Hassan no-show",
+      "next": "Set OIU next path when ready \u2014 Chrome/Meta/site not the priority today",
+      "when": "Soft hold \u00b7 reopen when T.J. says",
       "icon": "icons/lionmaker-agents/tj.png",
       "links": [
         {
@@ -33,9 +33,9 @@
       "role": "Partner + on camera",
       "tagline": "Partner on camera \u2014 and the face of the shoot",
       "status": "waiting",
-      "now": "Tuesday on camera \u2014 shoot time/place when he replies",
-      "next": "Tuesday Sep 22 shoot \u00b7 later introduce partners and deal-desk hour",
-      "when": "Tue Sep 22 shoot",
+      "now": "Tue Sep 22 shoot did not happen \u2014 no-show; not chasing",
+      "next": "Reintroduce when T.J. sets a new shoot window",
+      "when": "Paused",
       "icon": "icons/lionmaker-agents/hassan.png",
       "links": [
         {
@@ -52,8 +52,8 @@
       "role": "Chief of Staff",
       "tagline": "Keeps the crew aligned and the board honest",
       "status": "working",
-      "now": "Keeping this board current \u00b7 routing T.J. \u00b7 publishing the page",
-      "next": "Keep live board matching local redesign files",
+      "now": "CoS pulse \u00b7 board truth \u00b7 income lanes; OIU soft hold (not chasing Hassan)",
+      "next": "Keep board honest; crew disposition when T.J. decides",
       "when": "Ongoing",
       "icon": "icons/lionmaker-agents/nikola.png",
       "links": [
@@ -79,9 +79,9 @@
       "role": "Shoot & Video",
       "tagline": "Owns Hassan shoot day, sales video, and short hooks",
       "status": "waiting",
-      "now": "Shot list + hook/Q&A pack ready; waiting on shoot logistics",
-      "next": "Tuesday shoot \u2192 Wednesday edit sales video + ad clips",
-      "when": "Tue Sep 22 \u2192 Wed Sep 23",
+      "now": "Shot list + hook/Q&A pack ready; shoot slipped \u2014 soft hold",
+      "next": "Edit sales video + ad clips after a real shoot day",
+      "when": "Soft hold",
       "icon": "icons/lionmaker-agents/mira.png",
       "links": [
         {
@@ -104,9 +104,9 @@
       "role": "Paid Ads",
       "tagline": "Owns Meta ads, ~$200/day US spend, and the all-cash return check",
       "status": "waiting",
-      "now": "Ad campaign drafted (paused); creatives after shoot \u2014 Meta setup tomorrow (not stuck)",
-      "next": "Ads on Wed/Thu only if site is clean and shoot/edits are done (~$200/day US)",
-      "when": "Wed\u2013Thu Sep 23\u201324 (only if clear)",
+      "now": "Campaign draft paused; creatives wait on shoot \u2014 soft hold (not stuck)",
+      "next": "Ads only after clean site + creatives; no spend while soft hold",
+      "when": "Soft hold",
       "icon": "icons/lionmaker-agents/pax.png",
       "links": [
         {
@@ -123,9 +123,9 @@
       "role": "Buyer Emails",
       "tagline": "Owns post-booking email, welcome series, and checkout reminders",
       "status": "waiting",
-      "now": "Email-3 outline waiting on T.J. for subject + beat OK",
-      "next": "Write email 3, then 1\u20132, then connect in GoHighLevel before ads",
-      "when": "Wed Sep 23 (after outline OK)",
+      "now": "Email-3 outline still needs T.J. OK \u2014 soft hold with relaunch",
+      "next": "Write email 3 after outline OK and relaunch path is clear",
+      "when": "Soft hold",
       "icon": "icons/lionmaker-agents/remy.png",
       "links": [
         {
@@ -142,9 +142,9 @@
       "role": "Website & Checkout",
       "tagline": "Owns removing the old Ali funnel, Whop checkout, and phone checkout test",
       "status": "waiting",
-      "now": "Ali still on the live site; checkout path not live yet",
-      "next": "Checkout live (course + bump + VIP trial) \u00b7 mobile checkout test",
-      "when": "Before ads turn on",
+      "now": "Ali still on live site; checkout not live \u2014 soft hold with relaunch",
+      "next": "Ali off + Whop checkout + phone test when relaunch is back on",
+      "when": "Soft hold",
       "icon": "icons/lionmaker-agents/quinn.png",
       "links": [
         {
@@ -164,10 +164,10 @@
       "kind": "agent",
       "role": "Design",
       "tagline": "Owns relaunch board look, team personas/icons, and creative polish",
-      "status": "working",
-      "now": "Icons and role tags locked; standing by for small visual fixes after publish",
-      "next": "Stand by for small visual fixes after publish",
-      "when": "Sep 21",
+      "status": "waiting",
+      "now": "Board icons/roles locked; soft hold \u2014 no push work",
+      "next": "Small visual fixes if T.J. reopens relaunch",
+      "when": "Soft hold",
       "icon": "icons/lionmaker-agents/atlas.png",
       "links": [
         {
@@ -184,8 +184,8 @@
       "role": "Own It Offer Truth",
       "tagline": "Owns product/offer accuracy, pricing claims, and what can be said live",
       "status": "waiting",
-      "now": "On call when product/offer copy needs a truth check",
-      "next": "Review launch claims before ads if asked",
+      "now": "On call for offer/claims truth checks \u2014 soft hold",
+      "next": "Review launch claims before ads if relaunch returns",
       "when": "As needed",
       "icon": "icons/lionmaker-agents/orion.png",
       "links": [
@@ -202,10 +202,10 @@
       "kind": "agent",
       "role": "Support & Nurture",
       "tagline": "Talks to every visitor on the site and flags leads that need a human",
-      "status": "working",
-      "now": "Standing up site chat + lead follow-up reports to Nikola",
-      "next": "Live chat on uownit.com after Ali is off and checkout is clean",
-      "when": "This week",
+      "status": "waiting",
+      "now": "Site chat waits until Ali off / checkout clean \u2014 soft hold",
+      "next": "Live chat on uownit.com when site path is clear",
+      "when": "Soft hold",
       "icon": "icons/lionmaker-agents/hale.png",
       "links": [
         {
@@ -222,7 +222,7 @@
       "role": "Course Knowledge",
       "tagline": "Keeps the Own It course in one place so the crew talks from the same book",
       "status": "working",
-      "now": "Course index live on the board \u2014 19 modules, 104 lesson titles",
+      "now": "Course index live (19 modules, 104 titles) \u2014 keep lock current",
       "next": "Keep Lightspeed inventory and board course page in sync",
       "when": "This week",
       "icon": "icons/lionmaker-agents/primer.png",
