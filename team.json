@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-21T21:04:00-04:00",
+  "updated": "2026-09-21T21:06:00-04:00",
   "updated_by": "Nikola",
   "members": [
     {
@@ -184,6 +184,44 @@
       "next": "Review launch claims before ads if asked",
       "when": "As needed",
       "icon": "icons/lionmaker-agents/orion.png",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "hale",
+      "name": "Hale",
+      "persona": "Hale",
+      "kind": "agent",
+      "role": "Support & Nurture",
+      "tagline": "Talks to every visitor on the site and flags leads that need a human",
+      "status": "working",
+      "now": "Standing up site chat + lead follow-up reports to Nikola",
+      "next": "Live chat on uownit.com after Ali is off and checkout is clean",
+      "when": "This week",
+      "icon": "icons/lionmaker-agents/hale.png",
+      "links": [
+        {
+          "label": "Live board",
+          "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
+        }
+      ]
+    },
+    {
+      "id": "primer",
+      "name": "Primer",
+      "persona": "Primer",
+      "kind": "agent",
+      "role": "Course Knowledge",
+      "tagline": "Keeps the Own It course in one place so the crew talks from the same book",
+      "status": "working",
+      "now": "Gathering the full course into the team knowledge folder",
+      "next": "Index every lesson so Hale and the crew can use it with leads",
+      "when": "This week",
+      "icon": "icons/lionmaker-agents/primer.png",
       "links": [
         {
           "label": "Live board",
