@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-22T12:43:38-04:00",
+  "updated": "2026-09-22T20:10:00-04:00",
   "updated_by": "Nikola",
   "members": [
     {
@@ -11,8 +11,8 @@
       "tagline": "Calls the shots on shoot, spend, and go-live",
       "status": "working",
       "now": "Income focus this week; OIU on soft hold after Hassan no-show",
-      "next": "Set OIU next path when ready \u2014 Chrome/Meta/site not the priority today",
-      "when": "Soft hold \u00b7 reopen when T.J. says",
+      "next": "Set OIU next path when ready — Chrome/Meta/site not the priority today",
+      "when": "Soft hold · reopen when T.J. says",
       "icon": "icons/lionmaker-agents/tj.png",
       "links": [
         {
@@ -20,7 +20,7 @@
           "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
         },
         {
-          "label": "uownit.com (still shows Ali \u2014 needs cleanup)",
+          "label": "uownit.com (still shows Ali — needs cleanup)",
           "url": "https://uownit.com"
         }
       ]
@@ -31,9 +31,9 @@
       "persona": "Hassan",
       "kind": "human",
       "role": "Partner + on camera",
-      "tagline": "Partner on camera \u2014 and the face of the shoot",
+      "tagline": "Partner on camera — and the face of the shoot",
       "status": "waiting",
-      "now": "Tue Sep 22 shoot did not happen \u2014 no-show; not chasing",
+      "now": "Tue Sep 22 shoot did not happen — no-show; not chasing",
       "next": "Reintroduce when T.J. sets a new shoot window",
       "when": "Paused",
       "icon": "icons/lionmaker-agents/hassan.png",
@@ -52,7 +52,7 @@
       "role": "Chief of Staff",
       "tagline": "Keeps the crew aligned and the board honest",
       "status": "working",
-      "now": "CoS pulse \u00b7 board truth \u00b7 income lanes; OIU soft hold (not chasing Hassan)",
+      "now": "EOD pulse · board spine matched soft hold · income lanes",
       "next": "Keep board honest; crew disposition when T.J. decides",
       "when": "Ongoing",
       "icon": "icons/lionmaker-agents/nikola.png",
@@ -79,7 +79,7 @@
       "role": "Shoot & Video",
       "tagline": "Owns Hassan shoot day, sales video, and short hooks",
       "status": "waiting",
-      "now": "Shot list + hook/Q&A pack ready; shoot slipped \u2014 soft hold",
+      "now": "Shot list + hook/Q&A pack ready; shoot slipped — soft hold",
       "next": "Edit sales video + ad clips after a real shoot day",
       "when": "Soft hold",
       "icon": "icons/lionmaker-agents/mira.png",
@@ -87,12 +87,12 @@
         {
           "label": "Shot checklist",
           "url": null,
-          "note": "private file \u2014 ask T.J."
+          "note": "private file — ask T.J."
         },
         {
           "label": "Hook / Q&A pack",
           "url": null,
-          "note": "private file \u2014 ask T.J."
+          "note": "private file — ask T.J."
         }
       ]
     },
@@ -104,13 +104,13 @@
       "role": "Paid Ads",
       "tagline": "Owns Meta ads, ~$200/day US spend, and the all-cash return check",
       "status": "waiting",
-      "now": "Campaign draft paused; creatives wait on shoot \u2014 soft hold (not stuck)",
+      "now": "Campaign draft paused; creatives wait on shoot — soft hold (not stuck)",
       "next": "Ads only after clean site + creatives; no spend while soft hold",
       "when": "Soft hold",
       "icon": "icons/lionmaker-agents/pax.png",
       "links": [
         {
-          "label": "Live board \u2014 paid ads",
+          "label": "Live board — paid ads",
           "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
         }
       ]
@@ -123,13 +123,13 @@
       "role": "Buyer Emails",
       "tagline": "Owns post-booking email, welcome series, and checkout reminders",
       "status": "waiting",
-      "now": "Email-3 outline still needs T.J. OK \u2014 soft hold with relaunch",
+      "now": "Email-3 outline still needs T.J. OK — soft hold with relaunch",
       "next": "Write email 3 after outline OK and relaunch path is clear",
       "when": "Soft hold",
       "icon": "icons/lionmaker-agents/remy.png",
       "links": [
         {
-          "label": "Live board \u2014 email",
+          "label": "Live board — email",
           "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
         }
       ]
@@ -142,7 +142,7 @@
       "role": "Website & Checkout",
       "tagline": "Owns removing the old Ali funnel, Whop checkout, and phone checkout test",
       "status": "waiting",
-      "now": "Ali still on live site; checkout not live \u2014 soft hold with relaunch",
+      "now": "Ali still on live site; checkout not live — soft hold with relaunch",
       "next": "Ali off + Whop checkout + phone test when relaunch is back on",
       "when": "Soft hold",
       "icon": "icons/lionmaker-agents/quinn.png",
@@ -152,7 +152,7 @@
           "url": "https://uownit.com"
         },
         {
-          "label": "Live board \u2014 website",
+          "label": "Live board — website",
           "url": "https://lionmaker11.github.io/oiu-relaunch-board/"
         }
       ]
@@ -165,7 +165,7 @@
       "role": "Design",
       "tagline": "Owns relaunch board look, team personas/icons, and creative polish",
       "status": "waiting",
-      "now": "Board icons/roles locked; soft hold \u2014 no push work",
+      "now": "Board icons/roles locked; soft hold — no push work",
       "next": "Small visual fixes if T.J. reopens relaunch",
       "when": "Soft hold",
       "icon": "icons/lionmaker-agents/atlas.png",
@@ -184,7 +184,7 @@
       "role": "Own It Offer Truth",
       "tagline": "Owns product/offer accuracy, pricing claims, and what can be said live",
       "status": "waiting",
-      "now": "On call for offer/claims truth checks \u2014 soft hold",
+      "now": "On call for offer/claims truth checks — soft hold",
       "next": "Review launch claims before ads if relaunch returns",
       "when": "As needed",
       "icon": "icons/lionmaker-agents/orion.png",
@@ -203,7 +203,7 @@
       "role": "Support & Nurture",
       "tagline": "Talks to every visitor on the site and flags leads that need a human",
       "status": "waiting",
-      "now": "Site chat waits until Ali off / checkout clean \u2014 soft hold",
+      "now": "Site chat waits until Ali off / checkout clean — soft hold",
       "next": "Live chat on uownit.com when site path is clear",
       "when": "Soft hold",
       "icon": "icons/lionmaker-agents/hale.png",
@@ -222,7 +222,7 @@
       "role": "Course Knowledge",
       "tagline": "Keeps the Own It course in one place so the crew talks from the same book",
       "status": "working",
-      "now": "Course index live (19 modules, 104 titles) \u2014 keep lock current",
+      "now": "Course index live (19 modules, 104 titles) — keep lock current",
       "next": "Keep Lightspeed inventory and board course page in sync",
       "when": "This week",
       "icon": "icons/lionmaker-agents/primer.png",
